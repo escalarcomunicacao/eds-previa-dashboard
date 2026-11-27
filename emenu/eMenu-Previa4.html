@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Pr�via interativa do eMenu para clientes, sal�o, cozinha e gest�o.">
+<meta name="description" content="Prévia interativa do eMenu para clientes, salão, cozinha e gestão.">
 <meta name="theme-color" content="#642518">
-<title>eMenu | Opera��o do restaurante</title>
+<title>eMenu | Operação do restaurante</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 :root{--bg:#fff8f1;--paper:#fff;--ink:#34231d;--muted:#68534a;--line:#eadad0;--accent:#b12e20;--accent-hover:#92261a;--lime:#ffe2cb;--soft:#fae8dc;--amber:#8a4d19;--rust:#9c493a;--nav:#642518;--radius:16px;font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:16px;color-scheme:light}
@@ -212,7 +212,7 @@ main:focus{outline:0}.pagehead h1{overflow-wrap:anywhere}
 
 </head>
 <body>
-<a class="skip" href="#conteudo">Pular para o conte�do</a>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <div id="app"></div>
 <dialog id="dialog" aria-labelledby="dialog-title"></dialog>
 <div id="announcement" class="toast" role="status" aria-live="polite"></div>
@@ -228,11 +228,11 @@ const photos={
 };
 const roles={
   manager:{name:'Gerente',initials:'GE',start:'overview',tabs:['overview','orders','tables','reservations','tabs','queue','catalog','team','reports','settings','review']},
-  waiter:{name:'Gar�om',initials:'GA',start:'orders',tabs:['orders','tables','tabs','reservations','queue']},
+  waiter:{name:'Garçom',initials:'GA',start:'orders',tabs:['orders','tables','tabs','reservations','queue']},
   host:{name:'Atendente',initials:'AT',start:'reservations',tabs:['reservations','tables','orders','queue']},
   cook:{name:'Cozinheiro',initials:'CO',start:'orders',tabs:['orders','queue']}
 };
-const statusNames={new:'Recebido',preparing:'Em preparo',ready:'Pronto',delivered:'Entregue',cancelled:'Cancelado',open:'Aberta',ended:'Encerrada',confirmed:'Confirmada',arrived:'Em atendimento',expired:'Hor�rio encerrado',finished:'Finalizada',available:'Livre',occupied:'Ocupada',reserved:'Reservada',archived:'Arquivada'};
+const statusNames={new:'Recebido',preparing:'Em preparo',ready:'Pronto',delivered:'Entregue',cancelled:'Cancelado',open:'Aberta',ended:'Encerrada',confirmed:'Confirmada',arrived:'Em atendimento',expired:'Horário encerrado',finished:'Finalizada',available:'Livre',occupied:'Ocupada',reserved:'Reservada',archived:'Arquivada'};
 const money=value=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(value/100);
 const day=(d=new Date())=> new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Sao_Paulo'}).format(d);
 const clock=(d=new Date())=>new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Sao_Paulo',hour:'2-digit',minute:'2-digit'}).format(d);
@@ -242,20 +242,20 @@ const pad=n=>String(n).padStart(2,'0');
 const menuPalette=Object.freeze({accent:'#b12e20',background:'#fff6e9'});
 
 function makeRestaurant(id,name){
-  return {id,name,subtitle:'Cozinha da casa, do primeiro pedido ao caf�.',...menuPalette,logo:'',callFee:0,
-    screens:[{id:'kitchen-tv',name:'TV Cozinha'},{id:'bar-tv',name:'TV Bar'},{id:'hall-tv',name:'TV Sal�o'}],queueScreen:'hall-tv',
+  return {id,name,subtitle:'Cozinha da casa, do primeiro pedido ao café.',...menuPalette,logo:'',callFee:0,
+    screens:[{id:'kitchen-tv',name:'TV Cozinha'},{id:'bar-tv',name:'TV Bar'},{id:'hall-tv',name:'TV Salão'}],queueScreen:'hall-tv',
     sectors:[],categories:[],products:[],tables:[],checks:[],orders:[],reservations:[],staff:[],calls:[],activity:[],nextOrder:109,nextCheck:2409,carts:{},historyAccess:{}};
 }
 function makeSeed(){
   const r=makeRestaurant('brasa','Brasa & Mesa');
   r.sectors=[{id:'kitchen',name:'Cozinha',screen:'kitchen-tv'},{id:'bar',name:'Bar',screen:'bar-tv'}];
-  r.categories=[{id:'starts',name:'Para come�ar',sector:'kitchen'},{id:'burgers',name:'Hamb�rgueres',sector:'kitchen'},{id:'drinks',name:'Bebidas',sector:'bar'},{id:'sweets',name:'Sobremesas',sector:'kitchen'}];
+  r.categories=[{id:'starts',name:'Para começar',sector:'kitchen'},{id:'burgers',name:'Hambúrgueres',sector:'kitchen'},{id:'drinks',name:'Bebidas',sector:'bar'},{id:'sweets',name:'Sobremesas',sector:'kitchen'}];
   r.products=[
     {id:'fries',name:'Batata da casa',description:'Batatas douradas e maionese verde.',price:1890,category:'starts',image:photos.fries,active:true},
-    {id:'burger',name:'Brasa cl�ssico',description:'Blend de 160 g, queijo, alface e molho da casa.',price:3490,category:'burgers',image:photos.burger,active:true},
+    {id:'burger',name:'Brasa clássico',description:'Blend de 160 g, queijo, alface e molho da casa.',price:3490,category:'burgers',image:photos.burger,active:true},
     {id:'smoky',name:'Smash defumado',description:'Smash duplo, cheddar e cebola caramelizada.',price:3690,category:'burgers',image:photos.sandwich,active:true},
-    {id:'lemon',name:'Limonada da casa',description:'Lim�o fresco, gelo e hortel�.',price:650,category:'drinks',image:photos.lemonade,active:true},
-    {id:'coffee',name:'Caf� coado',description:'Caf� preparado na hora.',price:690,category:'drinks',image:photos.coffee,active:true},
+    {id:'lemon',name:'Limonada da casa',description:'Limão fresco, gelo e hortelã.',price:650,category:'drinks',image:photos.lemonade,active:true},
+    {id:'coffee',name:'Café coado',description:'Café preparado na hora.',price:690,category:'drinks',image:photos.coffee,active:true},
     {id:'brownie',name:'Brownie de chocolate',description:'Brownie quente com sorvete de creme.',price:1890,category:'sweets',image:photos.dessert,active:true}
   ];
   r.tables=Array.from({length:8},(_,i)=>({id:'t'+(i+1),name:'Mesa '+pad(i+1),seats:i===5?6:i%3===2?2:4,archived:false}));
@@ -267,7 +267,7 @@ function makeSeed(){
   };
   r.orders=[ticket('p104','c4','burger',2,'new','kitchen',4,'Um deles sem cebola'),ticket('p105','c1','fries',1,'preparing','kitchen',8),ticket('p106','c7','lemon',2,'ready','bar',12),ticket('p107','c4','lemon',1,'delivered','bar',16),ticket('p108','c8','smoky',1,'delivered','kitchen',45),ticket('p103','c8','lemon',1,'delivered','bar',45),ticket('p102','c8','coffee',1,'delivered','bar',45)];
   const previousDate=new Date(Date.now()-2*86400000).toISOString();
-  r.checks.push({id:'c0',code:'2399',table:'t2',name:'Comanda da Mesa 02',staff:'s2',status:'ended',method:'Cart�o',paid:5670,opened:previousDate,closed:previousDate});
+  r.checks.push({id:'c0',code:'2399',table:'t2',name:'Comanda da Mesa 02',staff:'s2',status:'ended',method:'Cartão',paid:5670,opened:previousDate,closed:previousDate});
   r.orders.push({...ticket('p101','c0','brownie',3,'delivered','kitchen',0),created:previousDate,delivered:previousDate});
   const tomorrow=new Date(Date.now()+86400000);
   r.reservations=[{id:'r1',table:'t3',name:'Camila Rocha',party:2,date:day(tomorrow),start:'19:00',end:'20:30',contact:'',note:'',status:'confirmed'},{id:'r2',table:'t6',name:'Pedro Alves',party:5,date:day(tomorrow),start:'20:00',end:'21:30',contact:'',note:'',status:'confirmed'}];
@@ -389,7 +389,7 @@ function drawDemoQr(value,canvas){
 const app = document.querySelector('#app');
 const dialog = document.querySelector('#dialog');
 const announcement = document.querySelector('#announcement');
-const labels = {overview:'Vis�o geral', orders:'Pedidos', tables:'Mesas', reservations:'Reservas', tabs:'Comandas', queue:'Fila de pedidos', catalog:'Card�pio', team:'Equipe e setores', reports:'Relat�rios', settings:'Estabelecimento', review:'Roteiro de teste'};
+const labels = {overview:'Visão geral', orders:'Pedidos', tables:'Mesas', reservations:'Reservas', tabs:'Comandas', queue:'Fila de pedidos', catalog:'Cardápio', team:'Equipe e setores', reports:'Relatórios', settings:'Estabelecimento', review:'Roteiro de teste'};
 const glyphs = {overview:'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',orders:'M5 4h14v17l-3-2-4 2-4-2-3 2zM8 8h8M8 12h8',tables:'M3 7h18v4H3zM6 11v8m12-8v8M4 15h16',reservations:'M4 5h16v16H4zM8 3v4m8-4v4M4 10h16',tabs:'M5 4h14v16H5zM8 9h8m-8 4h8m-8 4h5',queue:'M3 4h18v13H3zM8 21h8m-4-4v4',catalog:'M5 3v8m3-8v8m3-8v8m-6-4h6m-3 4v10M17 3c-2 2-3 4-3 9h4m0-9v18',team:'M16 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M14 7a3 3 0 1 1-6 0 3 3 0 1 1 6 0zM17 5a3 3 0 0 1 0 6m4 9v-2a4 4 0 0 0-3-4',reports:'M4 4v16h16M8 16v-4m5 4V8m5 8v-6',settings:'M4 6h16M4 12h16M4 18h16M8 4v4m8 2v4m-6 2v4',review:'M9 5H5v16h14V5h-4M9 3h6v4H9zM8 12l2 2 5-4m-7 7h8',cart:'M3 4h2l2 11h11l3-8H6m3 12h.01M17 19h.01',bell:'M5 16h14l-2-3V9a5 5 0 0 0-10 0v4zm5 3a2 2 0 0 0 4 0',search:'M16 16l5 5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0z',more:'M5 12h.01M12 12h.01M19 12h.01',plus:'M12 5v14M5 12h14',minus:'M5 12h14',close:'m6 6 12 12M18 6 6 18',eye:'M2 12s3-6 10-6 10 6 10 6-3 6-10 6-10-6-10-6zm13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',qr:'M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0v3h3m4-3v7h-7',up:'m5 14 7-7 7 7',down:'m5 10 7 7 7-7',check:'m4 12 5 5L20 6',link:'M10 13a4 4 0 0 0 6 0l4-4a4 4 0 0 0-6-6l-2 2m2 6a4 4 0 0 0-6 0l-4 4a4 4 0 0 0 6 6l2-2'};
 const icon = key => `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${glyphs[key] || glyphs.catalog}"/></svg>`;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -430,7 +430,7 @@ function restaurant() {
 const isManager = () => role === 'manager';
 const managesChecks = () => role === 'manager' || role === 'waiter';
 const canReserve = () => role !== 'cook';
-const screenName = (r, id) => byId(r.screens,id)?.name || 'Tela sem configura��o';
+const screenName = (r, id) => byId(r.screens,id)?.name || 'Tela sem configuração';
 const tableName = (r, id) => byId(r.tables,id)?.name || 'Mesa removida';
 const sectorName = (r, id) => byId(r.sectors,id)?.name || 'Sem setor';
 const dateLabel = value => value ? value.split('-').reverse().join('/') : '';
@@ -491,7 +491,7 @@ function notify(message) {
 function persist(message) {
   const saved = writeState(state);
   render();
-  if (message) notify(saved ? message : `${message} Altera��es nesta sess�o apenas.`);
+  if (message) notify(saved ? message : `${message} Alterações nesta sessão apenas.`);
 }
 
 function openModal(title, body, footer = '', onSubmit) {
@@ -536,7 +536,7 @@ function shell(r, page, inner) {
   const brand = `<span class="mark">${r.logo ? photo(r.logo) : icon('catalog')}</span>`;
   const clientUrl = clientHref(r,r.checks.find(c=>c.status==='open')?.code);
   const navigation = roles[role].tabs;
-  return `<div class="app-layout"><header class="app-header"><div class="app-header-inner"><a class="app-brand" href="#${roles[role].start}">${brand}<span class="wordmark">eMenu</span></a><span class="app-restaurant">${esc(r.name)}</span><div class="app-header-actions"><span class="demo">Demonstra��o</span><label class="role"><span>Perfil</span><span class="avatar">${roles[role].initials}</span>${select('role',Object.entries(roles).map(([id,entry])=>[id,entry.name]),role,'aria-label="Perfil da demonstra��o"')}</label><a class="button client-shortcut" href="${clientUrl}">${icon('eye')}Vista do cliente</a></div></div><nav class="app-nav" aria-label="Navega��o principal">${navigation.map(key=>navLink(key,page)).join('')}</nav></header><main class="work" id="conteudo" tabindex="-1">${inner}</main></div>`;
+  return `<div class="app-layout"><header class="app-header"><div class="app-header-inner"><a class="app-brand" href="#${roles[role].start}">${brand}<span class="wordmark">eMenu</span></a><span class="app-restaurant">${esc(r.name)}</span><div class="app-header-actions"><span class="demo">Demonstração</span><label class="role"><span>Perfil</span><span class="avatar">${roles[role].initials}</span>${select('role',Object.entries(roles).map(([id,entry])=>[id,entry.name]),role,'aria-label="Perfil da demonstração"')}</label><a class="button client-shortcut" href="${clientUrl}">${icon('eye')}Vista do cliente</a></div></div><nav class="app-nav" aria-label="Navegação principal">${navigation.map(key=>navLink(key,page)).join('')}</nav></header><main class="work" id="conteudo" tabindex="-1">${inner}</main></div>`;
 }
 
 function navigate(href) {
@@ -564,7 +564,7 @@ function ticket(r, order, interactive) {
   const check = byId(r.checks,order.check);
   const next = {new:['preparing','Iniciar preparo'],preparing:['ready','Marcar pronto'],ready:['delivered','Confirmar entrega']}[order.status];
   const canAdvance = interactive && next && ((role === 'cook' && order.status !== 'ready') || (role === 'waiter' && order.status === 'ready') || isManager());
-  return `<article class="ticket"><div class="spread"><h3>${esc(tableName(r,check?.table))}</h3><small>#${order.number}</small></div><ul>${order.items.map(item=>`<li><strong>${item.quantity}�</strong> ${esc(item.name)}${item.note ? `<br><small>${esc(item.note)}</small>` : ''}</li>`).join('')}</ul><div class="meta spread"><span>${esc(sectorName(r,order.sector))}</span><span>${timeLabel(order.created)}</span></div>${canAdvance ? btn(next[1],'advance',{id:order.id,value:next[0],className:'tiny'}) : ''}${interactive && isManager() && statesInProgress.includes(order.status) ? btn('Cancelar pedido','cancel-order',{id:order.id,className:'tiny danger quiet'}) : ''}</article>`;
+  return `<article class="ticket"><div class="spread"><h3>${esc(tableName(r,check?.table))}</h3><small>#${order.number}</small></div><ul>${order.items.map(item=>`<li><strong>${item.quantity}×</strong> ${esc(item.name)}${item.note ? `<br><small>${esc(item.note)}</small>` : ''}</li>`).join('')}</ul><div class="meta spread"><span>${esc(sectorName(r,order.sector))}</span><span>${timeLabel(order.created)}</span></div>${canAdvance ? btn(next[1],'advance',{id:order.id,value:next[0],className:'tiny'}) : ''}${interactive && isManager() && statesInProgress.includes(order.status) ? btn('Cancelar pedido','cancel-order',{id:order.id,className:'tiny danger quiet'}) : ''}</article>`;
 }
 
 function board(r, orders, interactive = true, compact = false) {
@@ -587,8 +587,8 @@ function renderOverview(r) {
   const sample = r.checks.find(check=>check.status==='open');
   const tableCards = tables.slice(0,9).map(t=>`<button class="table-mini ${tableStatus(r,t)}" data-action="table-detail" data-id="${esc(t.id)}">${icon('tables')}<strong>${esc(t.name)}</strong></button>`).join('');
   const upcoming = r.reservations.filter(res=>['confirmed','arrived'].includes(currentReservation(res))).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start)).slice(0,3);
-  return pageHead('Vis�o geral','Veja os pedidos em andamento e acompanhe as mesas do sal�o.',link('Abrir card�pio',clientHref(r,sample?.code),'eye'))+
-    `<section class="hero"><div><div class="eyebrow">Vis�o da opera��o</div><h2>${esc(r.name)}</h2><p>${esc(r.subtitle)}</p></div>${link('Acompanhar pedidos','#orders','orders','light')}</section><section class="metrics" aria-label="Indicadores">${metric('Mesas ocupadas',`${tables.filter(t=>tableStatus(r,t)==='occupied').length} / ${tables.length}`,'Mesas ativas no sal�o','tables')}${metric('Pedidos em andamento',active.length,'Recebidos, em preparo ou prontos','orders')}${metric('Reservas de hoje',todayReservations,'Reservas ativas','reservations')}${metric('Recebido hoje',money(revenue),'Comandas pagas','reports')}</section><div class="overview-grid">${panel('Pedidos em andamento',board(r,active,false,true),'Acompanhe os setores de preparo.')}<div class="overview-secondary">${panel('Mapa do sal�o',`<div class="panel-body"><div class="table-preview">${tableCards || empty('Cadastre uma mesa.')}</div><div class="legend"><span><i class="dot"></i>Livre</span><span><i class="dot"></i>Ocupada</span><span><i class="dot"></i>Reservada</span></div></div>`)}${panel('Pr�ximas reservas',upcoming.map(res=>`<div class="list-row"><div><h3>${esc(res.name)}</h3><p class="small">${esc(tableName(r,res.table))} � ${dateLabel(res.date)} �s ${esc(res.start)}</p></div>${tag(currentReservation(res))}</div>`).join('') || `<div class="panel-body">${empty('Sem reservas ativas.')}</div>`)}</div></div>`;
+  return pageHead('Visão geral','Veja os pedidos em andamento e acompanhe as mesas do salão.',link('Abrir cardápio',clientHref(r,sample?.code),'eye'))+
+    `<section class="hero"><div><div class="eyebrow">Visão da operação</div><h2>${esc(r.name)}</h2><p>${esc(r.subtitle)}</p></div>${link('Acompanhar pedidos','#orders','orders','light')}</section><section class="metrics" aria-label="Indicadores">${metric('Mesas ocupadas',`${tables.filter(t=>tableStatus(r,t)==='occupied').length} / ${tables.length}`,'Mesas ativas no salão','tables')}${metric('Pedidos em andamento',active.length,'Recebidos, em preparo ou prontos','orders')}${metric('Reservas de hoje',todayReservations,'Reservas ativas','reservations')}${metric('Recebido hoje',money(revenue),'Comandas pagas','reports')}</section><div class="overview-grid">${panel('Pedidos em andamento',board(r,active,false,true),'Acompanhe os setores de preparo.')}<div class="overview-secondary">${panel('Mapa do salão',`<div class="panel-body"><div class="table-preview">${tableCards || empty('Cadastre uma mesa.')}</div><div class="legend"><span><i class="dot"></i>Livre</span><span><i class="dot"></i>Ocupada</span><span><i class="dot"></i>Reservada</span></div></div>`)}${panel('Próximas reservas',upcoming.map(res=>`<div class="list-row"><div><h3>${esc(res.name)}</h3><p class="small">${esc(tableName(r,res.table))} · ${dateLabel(res.date)} às ${esc(res.start)}</p></div>${tag(currentReservation(res))}</div>`).join('') || `<div class="panel-body">${empty('Sem reservas ativas.')}</div>`)}</div></div>`;
 }
 
 function renderOrders(r) {
@@ -597,13 +597,13 @@ function renderOrders(r) {
   const validFilter = visibleSectors.some(s=>s.id===sectorFilter) ? sectorFilter : '';
   const orders = r.orders.filter(o=>(role!=='cook' || !assigned.length || assigned.includes(o.sector)) && (!validFilter || o.sector===validFilter));
   const calls = r.calls.filter(c=>c.status==='open');
-  const callList = managesChecks() && calls.length ? panel('Chamados de gar�om',calls.map(call=>`<div class="list-row"><div class="list-title"><span class="ico">${icon('bell')}</span><div><h3>${esc(tableName(r,call.table))}</h3><p class="small">Chamado �s ${timeLabel(call.created)}${call.fee ? ` � ${money(call.fee)} ap�s atendimento` : ''}</p></div></div>${btn('Concluir atendimento','handle-call',{id:call.id,className:'tiny'})}</div>`).join('')) : '';
+  const callList = managesChecks() && calls.length ? panel('Chamados de garçom',calls.map(call=>`<div class="list-row"><div class="list-title"><span class="ico">${icon('bell')}</span><div><h3>${esc(tableName(r,call.table))}</h3><p class="small">Chamado às ${timeLabel(call.created)}${call.fee ? ` · ${money(call.fee)} após atendimento` : ''}</p></div></div>${btn('Concluir atendimento','handle-call',{id:call.id,className:'tiny'})}</div>`).join('')) : '';
   const history = orders.filter(o=>o.status===orderView).sort((a,b)=>b.created.localeCompare(a.created));
-  return pageHead('Pedidos','Acompanhe o preparo, a entrega e os chamados do sal�o.')+`<div class="spread toolbar"><div>${tabs([['active','Em andamento'],['delivered','Entregues'],['cancelled','Cancelados']],orderView,'order-view')}</div><label>Setor ${select('sector-filter',placeholderOption('Todos os setores',visibleSectors),validFilter)}</label></div><div class="stack">${callList}${orderView==='active' ? `<section class="panel">${board(r,orders)}</section>` : history.length ? `<div class="tiles">${history.map(o=>ticket(r,o,true)).join('')}</div>` : empty('Nenhum pedido neste filtro.')}</div>`;
+  return pageHead('Pedidos','Acompanhe o preparo, a entrega e os chamados do salão.')+`<div class="spread toolbar"><div>${tabs([['active','Em andamento'],['delivered','Entregues'],['cancelled','Cancelados']],orderView,'order-view')}</div><label>Setor ${select('sector-filter',placeholderOption('Todos os setores',visibleSectors),validFilter)}</label></div><div class="stack">${callList}${orderView==='active' ? `<section class="panel">${board(r,orders)}</section>` : history.length ? `<div class="tiles">${history.map(o=>ticket(r,o,true)).join('')}</div>` : empty('Nenhum pedido neste filtro.')}</div>`;
 }
 
 function renderTables(r) {
-  return pageHead('Mesas','Consulte a ocupa��o e acesse as comandas por mesa.',isManager() ? btn('Nova mesa','table-form',{symbol:'plus',className:'primary'}) : '')+
+  return pageHead('Mesas','Consulte a ocupação e acesse as comandas por mesa.',isManager() ? btn('Nova mesa','table-form',{symbol:'plus',className:'primary'}) : '')+
   `<div class="tiles">${r.tables.map(t=>{
     const status = tableStatus(r,t);
     return `<article class="panel tile"><div class="spread"><h2>${esc(t.name)}</h2>${tag(status)}</div><p class="small">${t.seats} lugares</p><div class="tile-actions">${btn('Ver mesa','table-detail',{id:t.id,symbol:'eye',className:'tiny'})}${isManager() ? btn('Editar mesa','table-form',{id:t.id,symbol:'more',hide:true,className:'tiny'}) : ''}</div></article>`;
@@ -613,26 +613,26 @@ function renderTables(r) {
 function renderReservations(r) {
   const active = res=>['confirmed','arrived'].includes(currentReservation(res));
   const rows = r.reservations.filter(res=>reservationView==='active' ? active(res) : !active(res)).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
-  return pageHead('Reservas','Organize os hor�rios, confirme chegadas e consulte o hist�rico.',btn('Agendar reserva','reservation-form',{symbol:'plus',className:'primary'}))+tabs([['active','Ativas'],['history','Hist�rico']],reservationView,'reservation-view')+
-  panel(reservationView==='active' ? 'Agenda de reservas' : 'Hist�rico de reservas',rows.length ? rows.map(res=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('reservations')}</span><div><h3>${esc(res.name)}</h3><p class="small">${esc(tableName(r,res.table))} � ${res.party} ${res.party===1?'pessoa':'pessoas'} � ${dateLabel(res.date)} � ${esc(res.start)}-${esc(res.end)}</p></div></div><div class="row">${tag(currentReservation(res))}${btn('Ver reserva','reservation-detail',{id:res.id,className:'tiny'})}</div></article>`).join('') : `<div class="panel-body">${empty('Nenhuma reserva neste filtro.')}</div>`);
+  return pageHead('Reservas','Organize os horários, confirme chegadas e consulte o histórico.',btn('Agendar reserva','reservation-form',{symbol:'plus',className:'primary'}))+tabs([['active','Ativas'],['history','Histórico']],reservationView,'reservation-view')+
+  panel(reservationView==='active' ? 'Agenda de reservas' : 'Histórico de reservas',rows.length ? rows.map(res=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('reservations')}</span><div><h3>${esc(res.name)}</h3><p class="small">${esc(tableName(r,res.table))} · ${res.party} ${res.party===1?'pessoa':'pessoas'} · ${dateLabel(res.date)} · ${esc(res.start)}–${esc(res.end)}</p></div></div><div class="row">${tag(currentReservation(res))}${btn('Ver reserva','reservation-detail',{id:res.id,className:'tiny'})}</div></article>`).join('') : `<div class="panel-body">${empty('Nenhuma reserva neste filtro.')}</div>`);
 }
 
 function renderChecks(r) {
   const check = byId(r.checks,route.detail);
   if (check) return renderCheckDetail(r,check);
   return pageHead('Comandas','Acompanhe os pedidos entregues e finalize o pagamento.',btn('Abrir comanda','check-form',{symbol:'plus',className:'primary'}))+
-  panel('Comandas do sal�o',r.checks.length ? [...r.checks].sort((a,b)=>Number(a.status!=='open')-Number(b.status!=='open')).map(c=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('tabs')}</span><div><h3>${esc(c.name)}</h3><p class="small">${esc(tableName(r,c.table))} � C�digo ${esc(c.code)}</p></div></div><div class="row">${tag(c.status)}<strong>${money(c.status==='ended'?c.paid:checkTotals(r,c.id).total)}</strong>${link('Ver comanda',`#comanda?id=${encodeURIComponent(c.id)}`,'eye','tiny')}</div></article>`).join('') : `<div class="panel-body">${empty('Nenhuma comanda cadastrada.')}</div>`);
+  panel('Comandas do salão',r.checks.length ? [...r.checks].sort((a,b)=>Number(a.status!=='open')-Number(b.status!=='open')).map(c=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('tabs')}</span><div><h3>${esc(c.name)}</h3><p class="small">${esc(tableName(r,c.table))} · Código ${esc(c.code)}</p></div></div><div class="row">${tag(c.status)}<strong>${money(c.status==='ended'?c.paid:checkTotals(r,c.id).total)}</strong>${link('Ver comanda',`#comanda?id=${encodeURIComponent(c.id)}`,'eye','tiny')}</div></article>`).join('') : `<div class="panel-body">${empty('Nenhuma comanda cadastrada.')}</div>`);
 }
 
 function renderCheckDetail(r,c) {
   const assignedStaff = byId(r.staff,c.staff);
-  const assignedName = assignedStaff?.name || (c.staff ? 'Funcion�rio indispon�vel' : 'Sem gar�om atribu�do');
-  const responsible = `<section class="panel panel-body row check-assignee" aria-label="Gar�om respons�vel"><span class="check-assignee-icon">${icon('team')}</span><div><p class="small">Gar�om respons�vel</p><h2>${esc(assignedName)}</h2>${assignedStaff?.active===false?'<p class="small">Cadastro do funcion�rio inativo</p>':''}</div></section>`;
+  const assignedName = assignedStaff?.name || (c.staff ? 'Funcionário indisponível' : 'Sem garçom atribuído');
+  const responsible = `<section class="panel panel-body row check-assignee" aria-label="Garçom responsável"><span class="check-assignee-icon">${icon('team')}</span><div><p class="small">Garçom responsável</p><h2>${esc(assignedName)}</h2>${assignedStaff?.active===false?'<p class="small">Cadastro do funcionário inativo</p>':''}</div></section>`;
   const totals = checkTotals(r,c.id);
   const pending = totals.orders.some(o=>statesInProgress.includes(o.status)) || r.calls.some(call=>call.check===c.id && call.status==='open');
-  const orderRows = totals.orders.map(o=>`<div class="list-row"><div><h3>Pedido #${o.number}</h3><p class="small">${o.items.map(i=>`${i.quantity}� ${esc(i.name)}`).join(' � ')}</p></div><div class="row">${tag(o.status)}<strong>${money(orderValue(o))}</strong></div></div>`).join('');
-  const summary = `<div class="summary"><div class="spread"><span>Produtos entregues</span><strong>${money(totals.delivered)}</strong></div><div class="spread"><span>Pedidos em andamento</span><strong>${money(totals.pending)}</strong></div><div class="spread"><span>Chamados atendidos</span><strong>${money(totals.fees)}</strong></div><div class="spread total"><span>${c.status==='ended'?'Total pago':'Total a pagar'}</span><strong>${money(c.status==='ended'?c.paid:totals.total)}</strong></div></div>${c.status==='open' ? `<p class="small">${pending?'Conclua ou cancele os pedidos e atenda os chamados antes de fechar a comanda.':'O pagamento registra o valor e encerra esta comanda.'}</p>${btn('Realizar pagamento','pay',{id:c.id,symbol:'check',className:'primary',disabled:pending})}` : `<p class="small">${esc(c.method || 'Encerrada')} � ${dateLabel(day(new Date(c.closed)))} �s ${timeLabel(c.closed)}</p>`}`;
-  return pageHead(c.name,`${tableName(r,c.table)} � C�digo ${c.code}`,link('Voltar a comandas','#tabs')+(c.status==='open'?btn('QR Code','qr',{id:c.id,symbol:'qr'}):''))+responsible+`<div class="detail-grid">${panel('Pedidos da comanda',orderRows || `<div class="panel-body">${empty('Ainda n�o h� pedidos nesta comanda.')}</div>`)}${panel('Pagamento',`<div class="panel-body stack">${tag(c.status)}${summary}</div>`)}</div>`;
+  const orderRows = totals.orders.map(o=>`<div class="list-row"><div><h3>Pedido #${o.number}</h3><p class="small">${o.items.map(i=>`${i.quantity}× ${esc(i.name)}`).join(' · ')}</p></div><div class="row">${tag(o.status)}<strong>${money(orderValue(o))}</strong></div></div>`).join('');
+  const summary = `<div class="summary"><div class="spread"><span>Produtos entregues</span><strong>${money(totals.delivered)}</strong></div><div class="spread"><span>Pedidos em andamento</span><strong>${money(totals.pending)}</strong></div><div class="spread"><span>Chamados atendidos</span><strong>${money(totals.fees)}</strong></div><div class="spread total"><span>${c.status==='ended'?'Total pago':'Total a pagar'}</span><strong>${money(c.status==='ended'?c.paid:totals.total)}</strong></div></div>${c.status==='open' ? `<p class="small">${pending?'Conclua ou cancele os pedidos e atenda os chamados antes de fechar a comanda.':'O pagamento registra o valor e encerra esta comanda.'}</p>${btn('Realizar pagamento','pay',{id:c.id,symbol:'check',className:'primary',disabled:pending})}` : `<p class="small">${esc(c.method || 'Encerrada')} · ${dateLabel(day(new Date(c.closed)))} às ${timeLabel(c.closed)}</p>`}`;
+  return pageHead(c.name,`${tableName(r,c.table)} · Código ${c.code}`,link('Voltar a comandas','#tabs')+(c.status==='open'?btn('QR Code','qr',{id:c.id,symbol:'qr'}):''))+responsible+`<div class="detail-grid">${panel('Pedidos da comanda',orderRows || `<div class="panel-body">${empty('Ainda não há pedidos nesta comanda.')}</div>`)}${panel('Pagamento',`<div class="panel-body stack">${tag(c.status)}${summary}</div>`)}</div>`;
 }
 
 function queueRows(r,screen) {
@@ -660,8 +660,8 @@ function queueList(rows) {
   if (!rows.length) return `<div class="panel-body">${empty('Nenhum pedido ativo neste setor.')}</div>`;
   const priority=['ready','new','preparing'];
   const ordered=[...rows].sort((first,second)=>priority.indexOf(first.status)-priority.indexOf(second.status));
-  const entries=ordered.map(row=>`<li class="queue-list-row"><div><strong>${esc(row.table)}</strong><span class="small">Pedido #${row.number}</span></div><div><span class="queue-mobile-label">Setor</span>${esc(row.sector)}</div><div><span class="queue-mobile-label">Recebido �s</span><time datetime="${esc(row.created)}">${timeLabel(row.created)}</time></div><div>${tag(row.status,row.status==='ready'?'Pronto para entrega':statusNames[row.status])}</div></li>`).join('');
-  return `<div class="queue-list-head" aria-hidden="true"><span>Mesa e pedido</span><span>Setor</span><span>Recebido �s</span><span>Status</span></div><ul class="queue-list">${entries}</ul>`;
+  const entries=ordered.map(row=>`<li class="queue-list-row"><div><strong>${esc(row.table)}</strong><span class="small">Pedido #${row.number}</span></div><div><span class="queue-mobile-label">Setor</span>${esc(row.sector)}</div><div><span class="queue-mobile-label">Recebido às</span><time datetime="${esc(row.created)}">${timeLabel(row.created)}</time></div><div>${tag(row.status,row.status==='ready'?'Pronto para entrega':statusNames[row.status])}</div></li>`).join('');
+  return `<div class="queue-list-head" aria-hidden="true"><span>Mesa e pedido</span><span>Setor</span><span>Recebido às</span><span>Status</span></div><ul class="queue-list">${entries}</ul>`;
 }
 
 function screenLink(r,id,label) {
@@ -681,16 +681,16 @@ function queueScreens(r) {
 function renderQueue(r) {
   const selectedSector=byId(r.sectors,queueSector);
   const rows=queueRows(r,r.queueScreen).filter(row=>!selectedSector || row.sectorId===selectedSector.id);
-  const head=pageHead('Fila de pedidos','Veja o que aguarda preparo, est� na cozinha ou no bar e j� pode sair para a mesa.',link('Gerenciar pedidos','#orders','orders')+screenLink(r,r.queueScreen,'Abrir tela do sal�o'));
+  const head=pageHead('Fila de pedidos','Veja o que aguarda preparo, está na cozinha ou no bar e já pode sair para a mesa.',link('Gerenciar pedidos','#orders','orders')+screenLink(r,r.queueScreen,'Abrir tela do salão'));
   const controls=tabs([['panel','Painel da fila'],['list','Lista de pedidos'],['screens','Telas por setor']],queueView,'queue-view');
   if (queueView==='screens') return head+controls+queueScreens(r);
   return head+`<div class="spread queue-toolbar">${controls}<label class="row">Setor ${select('queue-sector',placeholderOption('Todos os setores',r.sectors),selectedSector?.id || '')}</label></div>`+
-    panel(queueView==='panel'?'Pedidos em andamento':'Pedidos ativos',queueView==='panel'?queueCards(rows):queueList(rows),`${rows.length} ${rows.length===1?'pedido ativo':'pedidos ativos'}${selectedSector?' � '+selectedSector.name:''}`);
+    panel(queueView==='panel'?'Pedidos em andamento':'Pedidos ativos',queueView==='panel'?queueCards(rows):queueList(rows),`${rows.length} ${rows.length===1?'pedido ativo':'pedidos ativos'}${selectedSector?' · '+selectedSector.name:''}`);
 }
 
 function renderDisplay(r) {
   const screen = byId(r.screens,route.screen) || byId(r.screens,r.queueScreen);
-  return `<div class="queue-display"><header class="topbar"><div class="row"><span class="mark">${icon('queue')}</span><strong class="title-break">${esc(r.name)}</strong><span class="demo">Demonstra��o</span></div><div class="row">${btn('Tela cheia','fullscreen')}${link('Voltar � fila','#queue')}</div></header><main class="work" id="conteudo" tabindex="-1">${pageHead(screen?.name || 'Painel de pedidos','Acompanhe o andamento dos pedidos desta tela.')}${queueCards(queueRows(r,screen?.id))}</main></div>`;
+  return `<div class="queue-display"><header class="topbar"><div class="row"><span class="mark">${icon('queue')}</span><strong class="title-break">${esc(r.name)}</strong><span class="demo">Demonstração</span></div><div class="row">${btn('Tela cheia','fullscreen')}${link('Voltar à fila','#queue')}</div></header><main class="work" id="conteudo" tabindex="-1">${pageHead(screen?.name || 'Painel de pedidos','Acompanhe o andamento dos pedidos desta tela.')}${queueCards(queueRows(r,screen?.id))}</main></div>`;
 }
 
 const normalize = value => value.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLocaleLowerCase('pt-BR');
@@ -710,9 +710,9 @@ function renderClient(r) {
     const matching = r.products.filter(p=>p.active && p.category===cat.id && normalize(`${p.name} ${p.description} ${cat.name}`).includes(normalize(menuSearch.trim())));
     return matching.length ? `<section class="category-group"><h2>${esc(cat.name)}</h2><div class="menu-grid">${matching.map(p=>`<button type="button" class="food-card" data-action="product" data-id="${esc(p.id)}"><span><h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><strong>${money(p.price)}</strong></span>${photo(p.image)}</button>`).join('')}</div></section>` : '';
   }).join('');
-  const callLabel = r.callFee ? `Chamar gar�om � ${money(r.callFee)}` : 'Chamar gar�om';
-  const note = check ? `${tableName(r,check.table)} � Comanda ${check.code}` : code ? `Comanda ${code} indispon�vel` : 'Card�pio digital';
-  return `<div class="client" style="--client-accent:${allowedColor(r.accent,menuPalette.accent)};--client-bg:${allowedColor(r.background,menuPalette.background)}">${header}<main id="conteudo" class="clientwrap" tabindex="-1"><section class="clienthero" style="--hero-image:url('${esc(hero.replaceAll("'","%27"))}')"><div><div class="eyebrow">${esc(note)}</div><h1>${esc(r.name)}</h1><p>${esc(r.subtitle)}</p></div></section><div class="client-tools"><label class="search">${icon('search')}<input name="menu-search" type="search" aria-label="Buscar no card�pio" placeholder="Buscar no card�pio" value="${esc(menuSearch)}"></label>${btn(callLabel,'call',{symbol:'bell'})}</div>${tabs([['','Tudo'],...choiceRows(categories)],activeCategory,'menu-category')}<div id="menu-results">${categoriesHtml || empty(menuSearch?'Nenhum produto encontrado.':'O card�pio ainda est� sendo preparado.')}</div><footer class="clientfooter"><span>Card�pio de demonstra��o � Dados fict�cios</span><a href="#${roles[role].start}">Voltar � opera��o do eMenu</a></footer></main></div>`;
+  const callLabel = r.callFee ? `Chamar garçom · ${money(r.callFee)}` : 'Chamar garçom';
+  const note = check ? `${tableName(r,check.table)} · Comanda ${check.code}` : code ? `Comanda ${code} indisponível` : 'Cardápio digital';
+  return `<div class="client" style="--client-accent:${allowedColor(r.accent,menuPalette.accent)};--client-bg:${allowedColor(r.background,menuPalette.background)}">${header}<main id="conteudo" class="clientwrap" tabindex="-1"><section class="clienthero" style="--hero-image:url('${esc(hero.replaceAll("'","%27"))}')"><div><div class="eyebrow">${esc(note)}</div><h1>${esc(r.name)}</h1><p>${esc(r.subtitle)}</p></div></section><div class="client-tools"><label class="search">${icon('search')}<input name="menu-search" type="search" aria-label="Buscar no cardápio" placeholder="Buscar no cardápio" value="${esc(menuSearch)}"></label>${btn(callLabel,'call',{symbol:'bell'})}</div>${tabs([['','Tudo'],...choiceRows(categories)],activeCategory,'menu-category')}<div id="menu-results">${categoriesHtml || empty(menuSearch?'Nenhum produto encontrado.':'O cardápio ainda está sendo preparado.')}</div><footer class="clientfooter"><span>Cardápio de demonstração · Dados fictícios</span><a href="#${roles[role].start}">Voltar à operação do eMenu</a></footer></main></div>`;
 }
 
 function quantityControls(qty, action, id) {
@@ -723,12 +723,12 @@ function showProduct(r,id) {
   const p = byId(r.products,id);
   if (!p?.active) return;
   let quantity = 1;
-  openModal(p.name,`${photo(p.image,'product-photo','eager')}<p class="subtle">${esc(p.description)}</p><div class="spread"><strong>${money(p.price)}</strong>${quantityControls(quantity,'product-qty')}</div>${field('Observa��o',textarea('note'))}<div class="spread"><small>Subtotal</small><strong data-product-total>${money(p.price)}</strong></div>`,btn('Ver carrinho','cart',{symbol:'cart'})+submit('Adicionar ao carrinho'),data=>{
+  openModal(p.name,`${photo(p.image,'product-photo','eager')}<p class="subtle">${esc(p.description)}</p><div class="spread"><strong>${money(p.price)}</strong>${quantityControls(quantity,'product-qty')}</div>${field('Observação',textarea('note'))}<div class="spread"><small>Subtotal</small><strong data-product-total>${money(p.price)}</strong></div>`,btn('Ver carrinho','cart',{symbol:'cart'})+submit('Adicionar ao carrinho'),data=>{
     const key = route.check || '_guest';
     const cart = cartFor(r,route.check);
     const note = String(data.get('note')||'').trim();
     const existing = cart.find(line=>line.product===p.id && line.note===note);
-    if (existing && existing.quantity+quantity>99) return modalError('O limite � de 99 unidades por item.');
+    if (existing && existing.quantity+quantity>99) return modalError('O limite é de 99 unidades por item.');
     if (existing) existing.quantity+=quantity;
     else cart.push({id:uid(),product:p.id,name:p.name,price:p.price,quantity,note});
     r.carts[key]=cart;
@@ -747,9 +747,9 @@ function showProduct(r,id) {
 function showCart(r) {
   const cart = cartFor(r,route.check);
   const check = openCheck(r,route.check);
-  const cartRows = cart.map(line=>`<article class="cartrow"><div class="grow"><strong>${esc(line.name)}</strong><br><small>${money(line.price)} por unidade${line.note?` � ${esc(line.note)}`:''}</small></div>${quantityControls(line.quantity,'cart-qty',line.id)}<strong class="nowrap">${money(line.price*line.quantity)}</strong></article>`).join('');
-  const checkLink = check ? `<p class="subtle">${esc(tableName(r,check.table))} � Comanda ${esc(check.code)}</p>` : `<div class="helpbox">${route.check?'Esta comanda est� encerrada ou indispon�vel.':'Vincule uma comanda aberta para enviar o pedido.'}</div>`;
-  openModal('Carrinho',`${checkLink}${cart.length?`<div class="cartrows">${cartRows}</div><div class="summary"><div class="spread total"><span>Total do carrinho</span><strong>${money(totalLines(cart))}</strong></div></div>`:empty('Seu carrinho est� vazio.')}`,btn('Continuar escolhendo','dismiss')+(check ? btn('Enviar pedido','send-order',{className:'primary',disabled:!cart.length}) : btn('Informar comanda','client-check',{className:'primary'})));
+  const cartRows = cart.map(line=>`<article class="cartrow"><div class="grow"><strong>${esc(line.name)}</strong><br><small>${money(line.price)} por unidade${line.note?` · ${esc(line.note)}`:''}</small></div>${quantityControls(line.quantity,'cart-qty',line.id)}<strong class="nowrap">${money(line.price*line.quantity)}</strong></article>`).join('');
+  const checkLink = check ? `<p class="subtle">${esc(tableName(r,check.table))} · Comanda ${esc(check.code)}</p>` : `<div class="helpbox">${route.check?'Esta comanda está encerrada ou indisponível.':'Vincule uma comanda aberta para enviar o pedido.'}</div>`;
+  openModal('Carrinho',`${checkLink}${cart.length?`<div class="cartrows">${cartRows}</div><div class="summary"><div class="spread total"><span>Total do carrinho</span><strong>${money(totalLines(cart))}</strong></div></div>`:empty('Seu carrinho está vazio.')}`,btn('Continuar escolhendo','dismiss')+(check ? btn('Enviar pedido','send-order',{className:'primary',disabled:!cart.length}) : btn('Informar comanda','client-check',{className:'primary'})));
 }
 
 function changeCart(r,id,delta) {
@@ -775,11 +775,11 @@ function showClientCheck(r) {
   const c = r.checks.find(item=>item.code===route.check) || r.checks.find(item=>item.code===clientCode);
   const authorized = c && (c.status==='open' || r.historyAccess[c.code]);
   const totals = authorized ? checkTotals(r,c.id) : null;
-  const summary = totals ? `<div class="summary"><div class="spread"><strong>${esc(tableName(r,c.table))} � ${esc(c.code)}</strong>${tag(c.status)}</div>${totals.orders.map(o=>`<div class="spread"><span>Pedido #${o.number}</span>${tag(o.status)}</div>`).join('')}<div class="spread total"><span>${c.status==='ended'?'Total pago':'Total confirmado'}</span><strong>${money(c.status==='ended'?c.paid:totals.total)}</strong></div></div>` : '';
-  openModal('Minha comanda',`${summary}${field('C�digo da comanda',input('code',route.check || '', 'required inputmode="numeric" maxlength="8" autocomplete="off"'))}`,cancel()+submit('Consultar comanda'),data=>{
+  const summary = totals ? `<div class="summary"><div class="spread"><strong>${esc(tableName(r,c.table))} · ${esc(c.code)}</strong>${tag(c.status)}</div>${totals.orders.map(o=>`<div class="spread"><span>Pedido #${o.number}</span>${tag(o.status)}</div>`).join('')}<div class="spread total"><span>${c.status==='ended'?'Total pago':'Total confirmado'}</span><strong>${money(c.status==='ended'?c.paid:totals.total)}</strong></div></div>` : '';
+  openModal('Minha comanda',`${summary}${field('Código da comanda',input('code',route.check || '', 'required inputmode="numeric" maxlength="8" autocomplete="off"'))}`,cancel()+submit('Consultar comanda'),data=>{
     const code=String(data.get('code')).trim();
     const target=openCheck(r,code);
-    if (!target) return modalError('Comanda aberta n�o localizada. Confirme o c�digo com o gar�om.');
+    if (!target) return modalError('Comanda aberta não localizada. Confirme o código com o garçom.');
     const oldCode=route.check || '_guest';
     if (oldCode==='_guest' && cartFor(r,null).length) {
       const destination=cartFor(r,code);
@@ -803,12 +803,12 @@ function showClientCheck(r) {
 function sendOrder(r) {
   const c=openCheck(r,route.check);
   const cart=cartFor(r,route.check);
-  if (!c || !cart.length) return modalError('� necess�rio ter itens e uma comanda aberta.');
+  if (!c || !cart.length) return modalError('É necessário ter itens e uma comanda aberta.');
   const groups = new Map();
   for (const line of cart) {
     const p=byId(r.products,line.product);
     const category=p && categoryOf(r,p);
-    if (!p?.active || !byId(r.sectors,category?.sector)) return modalError(`${line.name} est� indispon�vel. Remova o item e tente novamente.`);
+    if (!p?.active || !byId(r.sectors,category?.sector)) return modalError(`${line.name} está indisponível. Remova o item e tente novamente.`);
     const items=groups.get(category.sector) || [];
     items.push({...line, name:p.name,price:p.price});
     groups.set(category.sector,items);
@@ -820,25 +820,25 @@ function sendOrder(r) {
   }
   r.historyAccess[c.code]=true;
   delete r.carts[c.code];
-  complete('Pedido enviado aos setores respons�veis.');
+  complete('Pedido enviado aos setores responsáveis.');
 }
 
 function callWaiter(r) {
   const c=openCheck(r,route.check);
   if (!c) { showClientCheck(r); return; }
-  if (r.calls.some(call=>call.check===c.id && call.status==='open')) { notify('O gar�om j� foi chamado para esta mesa.'); return; }
-  const text=r.callFee ? `Enviar chamado para ${tableName(r,c.table)}? O valor de ${money(r.callFee)} ser� registrado ap�s o atendimento.` : `Enviar chamado para ${tableName(r,c.table)}?`;
-  confirmAction('Chamar gar�om',text,'Enviar chamado',()=>{
-    if (!openCheck(r,c.code)) return modalError('A comanda est� encerrada.');
+  if (r.calls.some(call=>call.check===c.id && call.status==='open')) { notify('O garçom já foi chamado para esta mesa.'); return; }
+  const text=r.callFee ? `Enviar chamado para ${tableName(r,c.table)}? O valor de ${money(r.callFee)} será registrado após o atendimento.` : `Enviar chamado para ${tableName(r,c.table)}?`;
+  confirmAction('Chamar garçom',text,'Enviar chamado',()=>{
+    if (!openCheck(r,c.code)) return modalError('A comanda está encerrada.');
     r.calls.push({id:uid(),table:c.table,check:c.id,status:'open',created:now(),fee:r.callFee});
-    complete('Gar�om chamado.');
+    complete('Garçom chamado.');
   },'primary');
 }
 
 function showTable(r,t) {
   const c=r.checks.find(c=>c.table===t.id && c.status==='open');
   const reservations=r.reservations.filter(res=>res.table===t.id && ['confirmed','arrived'].includes(currentReservation(res)));
-  const details=`<div class="spread">${tag(tableStatus(r,t))}<strong>${t.seats} lugares</strong></div>${c && managesChecks() ? `<div class="summary"><strong>${esc(c.name)}</strong><p class="small">C�digo ${esc(c.code)} � ${money(checkTotals(r,c.id).total)} confirmado</p></div>`:''}${reservations.map(res=>`<div class="spread"><span>${esc(res.name)} � ${dateLabel(res.date)} ${esc(res.start)}</span>${btn('Ver reserva','reservation-detail',{id:res.id,className:'tiny'})}</div>`).join('')}`;
+  const details=`<div class="spread">${tag(tableStatus(r,t))}<strong>${t.seats} lugares</strong></div>${c && managesChecks() ? `<div class="summary"><strong>${esc(c.name)}</strong><p class="small">Código ${esc(c.code)} · ${money(checkTotals(r,c.id).total)} confirmado</p></div>`:''}${reservations.map(res=>`<div class="spread"><span>${esc(res.name)} · ${dateLabel(res.date)} ${esc(res.start)}</span>${btn('Ver reserva','reservation-detail',{id:res.id,className:'tiny'})}</div>`).join('')}`;
   let actions='';
   if (c && managesChecks()) actions=btn('QR Code','qr',{id:c.id,symbol:'qr'})+link('Ver comanda',`#comanda?id=${encodeURIComponent(c.id)}`,'tabs','primary');
   if (!c && !t.archived && managesChecks()) actions=btn('Abrir comanda','check-form',{id:t.id,symbol:'plus',className:'primary'});
@@ -854,9 +854,9 @@ function tableForm(r,id) {
   showForm(table?'Editar mesa':'Nova mesa',fields,data=>{
     const name=String(data.get('name')).trim();
     if (!name) return modalError('Informe o nome da mesa.');
-    if (r.tables.some(t=>t!==table && normalize(t.name)===normalize(name))) return modalError('J� existe uma mesa com este nome.');
+    if (r.tables.some(t=>t!==table && normalize(t.name)===normalize(name))) return modalError('Já existe uma mesa com este nome.');
     const seats=Number(data.get('seats'));
-    if (table && r.reservations.some(res=>res.table===table.id && ['confirmed','arrived'].includes(currentReservation(res)) && res.party>seats)) return modalError('H� uma reserva ativa que precisa de mais lugares.');
+    if (table && r.reservations.some(res=>res.table===table.id && ['confirmed','arrived'].includes(currentReservation(res)) && res.party>seats)) return modalError('Há uma reserva ativa que precisa de mais lugares.');
     if (table) Object.assign(table,{name,seats});
     else r.tables.push({id:uid(),name,seats,archived:false});
     complete(table?'Mesa atualizada.':'Mesa cadastrada.');
@@ -867,14 +867,14 @@ function archiveTable(r,t) {
   if (!isManager()) return;
   if (!t.archived && tableStatus(r,t)!=='available') { notify('Encerre a comanda e as reservas ativas antes de arquivar.'); return; }
   if (t.archived) { t.archived=false; complete('Mesa reativada.'); return; }
-  confirmAction('Arquivar mesa',`${t.name} sair� da lista de mesas dispon�veis. O hist�rico ser� preservado.`,'Arquivar',()=>{t.archived=true;complete('Mesa arquivada.');});
+  confirmAction('Arquivar mesa',`${t.name} sairá da lista de mesas disponíveis. O histórico será preservado.`,'Arquivar',()=>{t.archived=true;complete('Mesa arquivada.');});
 }
 
 function reservationForm(r,tableId) {
   if (!canReserve()) return;
   const tables=r.tables.filter(t=>!t.archived);
   if (!tables.length) { notify('Cadastre uma mesa ativa para fazer uma reserva.'); return; }
-  const fields=field('Nome do cliente',input('name','','required maxlength="70"'),'full')+field('Mesa',select('table',placeholderOption('Selecione a mesa',tables),tableId,'required'))+field('Pessoas',input('party',2,'required type="number" min="1" max="99"'))+field('Data',input('date',day(),`required type="date" min="${day()}"`))+field('Telefone',input('contact','','type="tel" maxlength="22"'))+field('Hor�rio de chegada',input('start','','required type="time"'))+field('Hor�rio de sa�da',input('end','','required type="time"'))+field('Observa��es',textarea('note'),'full');
+  const fields=field('Nome do cliente',input('name','','required maxlength="70"'),'full')+field('Mesa',select('table',placeholderOption('Selecione a mesa',tables),tableId,'required'))+field('Pessoas',input('party',2,'required type="number" min="1" max="99"'))+field('Data',input('date',day(),`required type="date" min="${day()}"`))+field('Telefone',input('contact','','type="tel" maxlength="22"'))+field('Horário de chegada',input('start','','required type="time"'))+field('Horário de saída',input('end','','required type="time"'))+field('Observações',textarea('note'),'full');
   showForm('Agendar reserva',fields,data=>{
     const res=Object.fromEntries(data);
     res.name=res.name.trim();
@@ -882,9 +882,9 @@ function reservationForm(r,tableId) {
     const table=byId(tables,res.table);
     if (!res.name || !table) return modalError('Informe o nome do cliente e selecione uma mesa.');
     if (res.party>table.seats) return modalError(`${table.name} tem ${table.seats} lugares.`);
-    if (res.end<=res.start || res.date<day() || res.date===day() && res.end<=clock()) return modalError('Escolha um hor�rio de sa�da posterior � chegada e ainda dispon�vel.');
+    if (res.end<=res.start || res.date<day() || res.date===day() && res.end<=clock()) return modalError('Escolha um horário de saída posterior à chegada e ainda disponível.');
     const overlaps=r.reservations.some(item=>item.table===table.id && item.date===res.date && ['confirmed','arrived'].includes(currentReservation(item)) && item.start<res.end && res.start<item.end);
-    if (overlaps) return modalError('A mesa j� tem uma reserva que coincide com esse hor�rio.');
+    if (overlaps) return modalError('A mesa já tem uma reserva que coincide com esse horário.');
     r.reservations.push({...res,id:uid(),status:'confirmed'});
     reservationView='active';
     complete('Reserva agendada.');
@@ -893,7 +893,7 @@ function reservationForm(r,tableId) {
 
 function showReservation(r,res) {
   const status=currentReservation(res);
-  const body=`<div class="spread"><strong>${esc(tableName(r,res.table))}</strong>${tag(status)}</div><div class="summary"><p>${dateLabel(res.date)} � ${esc(res.start)}-${esc(res.end)}</p><p>${res.party} ${res.party===1?'pessoa':'pessoas'}</p>${res.contact?`<p>${esc(res.contact)}</p>`:''}${res.note?`<p>${esc(res.note)}</p>`:''}</div>`;
+  const body=`<div class="spread"><strong>${esc(tableName(r,res.table))}</strong>${tag(status)}</div><div class="summary"><p>${dateLabel(res.date)} · ${esc(res.start)}–${esc(res.end)}</p><p>${res.party} ${res.party===1?'pessoa':'pessoas'}</p>${res.contact?`<p>${esc(res.contact)}</p>`:''}${res.note?`<p>${esc(res.note)}</p>`:''}</div>`;
   const actions=canReserve() ? (status==='confirmed'?btn('Confirmar chegada','reservation-status',{id:res.id,value:'arrived',className:'primary'})+btn('Cancelar reserva','reservation-status',{id:res.id,value:'cancelled',className:'danger'}):status==='arrived'?btn('Finalizar reserva','reservation-status',{id:res.id,value:'finished'}):'') : '';
   openModal(res.name,body,actions);
 }
@@ -902,7 +902,7 @@ function changeReservation(r,res,next) {
   if (!canReserve()) return;
   const status=currentReservation(res);
   if (status==='confirmed' && next==='arrived') {
-    if (res.date!==day()) { modalError('A chegada s� pode ser registrada no dia da reserva.'); return; }
+    if (res.date!==day()) { modalError('A chegada só pode ser registrada no dia da reserva.'); return; }
     if (r.checks.some(c=>c.table===res.table && c.status==='open')) { modalError('Encerre a comanda em uso antes de confirmar a chegada.'); return; }
     res.status=next;
     complete('Chegada confirmada.');
@@ -914,9 +914,9 @@ function changeReservation(r,res,next) {
 function checkForm(r,tableId) {
   if (!managesChecks()) return;
   const tables=r.tables.filter(t=>!t.archived && !r.checks.some(c=>c.table===t.id && c.status==='open'));
-  if (!tables.length) { notify('Nenhuma mesa est� dispon�vel para abrir uma comanda.'); return; }
+  if (!tables.length) { notify('Nenhuma mesa está disponível para abrir uma comanda.'); return; }
   const staff=r.staff.filter(s=>s.role==='waiter' && s.active);
-  const fields=field('Mesa',select('table',placeholderOption('Selecione a mesa',tables),tableId,'required'))+field('Gar�om',select('staff',placeholderOption('Sem atribui��o',staff),staff[0]?.id))+field('Nome da comanda',input('name','','maxlength="60" placeholder="Ex.: Comanda da Mesa 03"'),'full');
+  const fields=field('Mesa',select('table',placeholderOption('Selecione a mesa',tables),tableId,'required'))+field('Garçom',select('staff',placeholderOption('Sem atribuição',staff),staff[0]?.id))+field('Nome da comanda',input('name','','maxlength="60" placeholder="Ex.: Comanda da Mesa 03"'),'full');
   showForm('Abrir comanda',fields,data=>{
     const table=byId(tables,data.get('table'));
     if (!table || r.checks.some(c=>c.table===table.id && c.status==='open')) return modalError('Selecione uma mesa sem comanda aberta.');
@@ -931,11 +931,11 @@ function payCheck(r,c) {
   if (!managesChecks() || c.status!=='open') return;
   const totals=checkTotals(r,c.id);
   const pending=totals.orders.some(o=>statesInProgress.includes(o.status)) || r.calls.some(call=>call.check===c.id && call.status==='open');
-  if (pending) { notify('H� pedidos ou chamados pendentes nesta comanda.'); return; }
-  const paymentOptions=totals.total?[['Pix','Pix'],['Cart�o','Cart�o'],['Dinheiro','Dinheiro']]:[['Sem cobran�a','Sem cobran�a']];
-  const body=`<div class="summary"><div class="spread total"><span>Valor a registrar</span><strong>${money(totals.total)}</strong></div></div>${field('Forma de pagamento',select('method',paymentOptions))}<p class="small">O pagamento � simulado. Ao confirmar, o c�digo deixa de aceitar novos pedidos.</p>`;
+  if (pending) { notify('Há pedidos ou chamados pendentes nesta comanda.'); return; }
+  const paymentOptions=totals.total?[['Pix','Pix'],['Cartão','Cartão'],['Dinheiro','Dinheiro']]:[['Sem cobrança','Sem cobrança']];
+  const body=`<div class="summary"><div class="spread total"><span>Valor a registrar</span><strong>${money(totals.total)}</strong></div></div>${field('Forma de pagamento',select('method',paymentOptions))}<p class="small">O pagamento é simulado. Ao confirmar, o código deixa de aceitar novos pedidos.</p>`;
   openModal('Realizar pagamento',body,cancel()+submit('Registrar e encerrar'),data=>{
-    if (c.status!=='open' || checkTotals(r,c.id).orders.some(o=>statesInProgress.includes(o.status)) || r.calls.some(call=>call.check===c.id && call.status==='open')) return modalError('A comanda mudou. Abra novamente para conferir a situa��o.');
+    if (c.status!=='open' || checkTotals(r,c.id).orders.some(o=>statesInProgress.includes(o.status)) || r.calls.some(call=>call.check===c.id && call.status==='open')) return modalError('A comanda mudou. Abra novamente para conferir a situação.');
     Object.assign(c,{status:'ended',paid:checkTotals(r,c.id).total,method:data.get('method'),closed:now()});
     delete r.carts[c.code];
     complete('Pagamento registrado. Comanda encerrada.');
@@ -944,7 +944,7 @@ function payCheck(r,c) {
 
 function showQr(r,c) {
   const destination = new URL(clientHref(r,c.code),location.href);
-  openModal(`QR Code � ${tableName(r,c.table)}`,`<canvas class="qr-img" aria-label="QR Code para o card�pio da mesa"></canvas><p class="subtle">Comanda ${esc(c.code)} � Abra o card�pio de demonstra��o.</p>`,btn('Copiar link','copy',{value:destination.href,symbol:'link'})+link('Abrir card�pio',destination.hash,'eye','primary'));
+  openModal(`QR Code · ${tableName(r,c.table)}`,`<canvas class="qr-img" aria-label="QR Code para o cardápio da mesa"></canvas><p class="subtle">Comanda ${esc(c.code)} · Abra o cardápio de demonstração.</p>`,btn('Copiar link','copy',{value:destination.href,symbol:'link'})+link('Abrir cardápio',destination.hash,'eye','primary'));
   const canvas=dialog.querySelector('canvas');
   if (!drawDemoQr(destination.href,canvas)) canvas.hidden=true;
 }
@@ -962,13 +962,13 @@ function catalogOrder(r) {
 }
 
 function playlistHandle(id, name, kind) {
-  return `<button type="button" class="playlist-handle" data-playlist-handle="${esc(id)}" data-kind="${kind}" aria-label="Arrastar ${esc(name)}" aria-describedby="playlist-help"><span aria-hidden="true">?</span></button>`;
+  return `<button type="button" class="playlist-handle" data-playlist-handle="${esc(id)}" data-kind="${kind}" aria-label="Arrastar ${esc(name)}" aria-describedby="playlist-help"><span aria-hidden="true">⠿</span></button>`;
 }
 
 function categoryPlaylist(r, categories, selected) {
   const rows = categories.map((category, index) => {
     const count = r.products.filter(product => product.category === category.id).length;
-    return `<li class="playlist-row category-playlist-row${selected === category.id ? ' selected' : ''}" data-playlist-id="${esc(category.id)}">${playlistHandle(category.id, category.name, 'categories')}<span class="playlist-position">${index + 1}</span><button type="button" class="category-choice" data-action="catalog-category" data-id="${esc(category.id)}"${selected === category.id ? ' aria-pressed="true"' : ''}><strong>${esc(category.name)}</strong><small>${esc(sectorName(r, category.sector))} � ${count} ${count === 1 ? 'produto' : 'produtos'}</small></button><div class="playlist-actions">${btn('Editar','category-form',{id:category.id,className:'tiny'})}${btn('A��es da categoria','entity-menu',{id:category.id,value:'category',symbol:'more',hide:true,className:'tiny'})}</div></li>`;
+    return `<li class="playlist-row category-playlist-row${selected === category.id ? ' selected' : ''}" data-playlist-id="${esc(category.id)}">${playlistHandle(category.id, category.name, 'categories')}<span class="playlist-position">${index + 1}</span><button type="button" class="category-choice" data-action="catalog-category" data-id="${esc(category.id)}"${selected === category.id ? ' aria-pressed="true"' : ''}><strong>${esc(category.name)}</strong><small>${esc(sectorName(r, category.sector))} · ${count} ${count === 1 ? 'produto' : 'produtos'}</small></button><div class="playlist-actions">${btn('Editar','category-form',{id:category.id,className:'tiny'})}${btn('Ações da categoria','entity-menu',{id:category.id,value:'category',symbol:'more',hide:true,className:'tiny'})}</div></li>`;
   }).join('');
   return `<ul class="playlist-list" data-playlist-kind="categories" aria-label="Categorias em ordem">${rows}</ul>${!rows ? `<div class="panel-body">${empty('Crie uma categoria antes de adicionar produtos.')}</div>` : ''}`;
 }
@@ -977,19 +977,19 @@ function renderCatalog(r) {
   const {categories, products} = catalogOrder(r);
   const selected = byId(categories, selectedCatalogCategory) || categories[0];
   const dirty = catalogDraft?.restaurant === r.id;
-  const bar = tabs([['products','Produtos'],['categories','Categorias'],['preview','Pr�via']],catalogView,'catalog-view');
+  const bar = tabs([['products','Produtos'],['categories','Categorias'],['preview','Prévia']],catalogView,'catalog-view');
   const actions = catalogView === 'preview'
-    ? link('Abrir card�pio',clientHref(r,r.checks.find(c=>c.status==='open')?.code),'eye','primary')
-    : btn('Cancelar altera��es','catalog-order-cancel',{disabled:!dirty}) + btn('Salvar ordem','catalog-order-save',{className:'primary',disabled:!dirty}) + btn(catalogView==='products'?'Novo produto':'Nova categoria',catalogView==='products'?'product-form':'category-form',{symbol:'plus'});
-  const head = pageHead('Card�pio','Organize as categorias e os produtos na ordem em que aparecem para o cliente.',actions) + bar;
-  if (catalogView === 'preview') return head + panel('Pr�via do estabelecimento',`<div class="panel-body stack"><div class="row"><span class="mark">${r.logo?photo(r.logo):icon('catalog')}</span><div><h3>${esc(r.name)}</h3><p class="small">${esc(r.subtitle)}</p></div></div><div class="spread">${link('Ver card�pio em tela cheia',clientHref(r,r.checks.find(c=>c.status==='open')?.code),'eye')}${link('Personalizar cores e logo','#settings','settings')}</div><iframe class="menu-preview" src="${esc(new URL(`?preview=1${clientHref(r,r.checks.find(c=>c.status==='open')?.code)}`,location.href).href)}" title="Pr�via do card�pio do cliente" loading="lazy"></iframe></div>`);
-  const help = `<p class="playlist-help" id="playlist-help"><span class="playlist-help-grip" aria-hidden="true">?</span> Arraste pela al�a � esquerda para mudar a posi��o e clique em <strong>Salvar ordem</strong>.<span class="sr-only"> Com a al�a focada, use Alt mais seta para cima ou para baixo para mover pelo teclado.</span>${dirty ? '<span class="tag new">Ordem ainda n�o salva</span>' : ''}</p>`;
+    ? link('Abrir cardápio',clientHref(r,r.checks.find(c=>c.status==='open')?.code),'eye','primary')
+    : btn('Cancelar alterações','catalog-order-cancel',{disabled:!dirty}) + btn('Salvar ordem','catalog-order-save',{className:'primary',disabled:!dirty}) + btn(catalogView==='products'?'Novo produto':'Nova categoria',catalogView==='products'?'product-form':'category-form',{symbol:'plus'});
+  const head = pageHead('Cardápio','Organize as categorias e os produtos na ordem em que aparecem para o cliente.',actions) + bar;
+  if (catalogView === 'preview') return head + panel('Prévia do estabelecimento',`<div class="panel-body stack"><div class="row"><span class="mark">${r.logo?photo(r.logo):icon('catalog')}</span><div><h3>${esc(r.name)}</h3><p class="small">${esc(r.subtitle)}</p></div></div><div class="spread">${link('Ver cardápio em tela cheia',clientHref(r,r.checks.find(c=>c.status==='open')?.code),'eye')}${link('Personalizar cores e logo','#settings','settings')}</div><iframe class="menu-preview" src="${esc(new URL(`?preview=1${clientHref(r,r.checks.find(c=>c.status==='open')?.code)}`,location.href).href)}" title="Prévia do cardápio do cliente" loading="lazy"></iframe></div>`);
+  const help = `<p class="playlist-help" id="playlist-help"><span class="playlist-help-grip" aria-hidden="true">⠿</span> Arraste pela alça à esquerda para mudar a posição e clique em <strong>Salvar ordem</strong>.<span class="sr-only"> Com a alça focada, use Alt mais seta para cima ou para baixo para mover pelo teclado.</span>${dirty ? '<span class="tag new">Ordem ainda não salva</span>' : ''}</p>`;
   const categoryPanel = panel('Categorias',categoryPlaylist(r,categories,catalogView==='products'?selected?.id:null));
   if (catalogView === 'categories') return head + help + `<div class="category-playlist-full">${categoryPanel}</div>`;
   const items = products.filter(product => product.category === selected?.id);
-  const rows = items.map((product, index) => `<li class="playlist-row product-playlist-row" data-playlist-id="${esc(product.id)}">${playlistHandle(product.id,product.name,'products')}<span class="playlist-position">${index + 1}</span>${photo(product.image,'playlist-cover')}<div class="playlist-title"><strong>${esc(product.name)}</strong><small>${esc(product.description)}</small></div><strong class="playlist-price">${money(product.price)}</strong><span class="playlist-visibility">${product.active?'Vis�vel':'Oculto'}</span><div class="playlist-actions">${btn('Editar','product-form',{id:product.id,className:'tiny'})}${btn('A��es do produto','entity-menu',{id:product.id,value:'product',symbol:'more',hide:true,className:'tiny'})}</div></li>`).join('');
-  const listHead = `<div class="playlist-column-head" aria-hidden="true"><span></span><span>#</span><span class="playlist-track-label">Produto</span><span>Pre�o</span><span>Status</span><span>A��es</span></div>`;
-  const productPanel = panel(selected?.name || 'Produtos',listHead + `<ul class="playlist-list" data-playlist-kind="products" data-category="${esc(selected?.id || '')}" aria-label="Produtos de ${esc(selected?.name || 'categoria')}">${rows}</ul>${!rows?`<div class="panel-body">${empty('Nenhum produto nesta categoria.')}</div>`:''}`,`${items.length} ${items.length===1?'produto':'produtos'}${selected?' � '+sectorName(r,selected.sector):''}`);
+  const rows = items.map((product, index) => `<li class="playlist-row product-playlist-row" data-playlist-id="${esc(product.id)}">${playlistHandle(product.id,product.name,'products')}<span class="playlist-position">${index + 1}</span>${photo(product.image,'playlist-cover')}<div class="playlist-title"><strong>${esc(product.name)}</strong><small>${esc(product.description)}</small></div><strong class="playlist-price">${money(product.price)}</strong><span class="playlist-visibility">${product.active?'Visível':'Oculto'}</span><div class="playlist-actions">${btn('Editar','product-form',{id:product.id,className:'tiny'})}${btn('Ações do produto','entity-menu',{id:product.id,value:'product',symbol:'more',hide:true,className:'tiny'})}</div></li>`).join('');
+  const listHead = `<div class="playlist-column-head" aria-hidden="true"><span></span><span>#</span><span class="playlist-track-label">Produto</span><span>Preço</span><span>Status</span><span>Ações</span></div>`;
+  const productPanel = panel(selected?.name || 'Produtos',listHead + `<ul class="playlist-list" data-playlist-kind="products" data-category="${esc(selected?.id || '')}" aria-label="Produtos de ${esc(selected?.name || 'categoria')}">${rows}</ul>${!rows?`<div class="panel-body">${empty('Nenhum produto nesta categoria.')}</div>`:''}`,`${items.length} ${items.length===1?'produto':'produtos'}${selected?' · '+sectorName(r,selected.sector):''}`);
   return head + help + `<div class="catalog-playlists">${categoryPanel}${productPanel}</div>`;
 }
 
@@ -1013,7 +1013,7 @@ function bindCatalogPlaylists(r) {
     const restoreFocus = id => [...app.querySelectorAll('[data-playlist-handle]')].find(handle=>handle.dataset.playlistHandle===id && handle.dataset.kind===kind)?.focus({preventScroll:true});
     const numberRows = () => [...list.children].forEach((item,index)=>{
       item.querySelector('.playlist-position').textContent = index + 1;
-      if (item.classList.contains('playlist-drop-slot')) item.dataset.dropPosition = `Soltar aqui � posi��o ${index + 1}`;
+      if (item.classList.contains('playlist-drop-slot')) item.dataset.dropPosition = `Soltar aqui · posição ${index + 1}`;
     });
     const stop = (cancelled = false) => {
       cancelAnimationFrame(frame);
@@ -1040,7 +1040,7 @@ function bindCatalogPlaylists(r) {
         const updatedList = app.querySelector(`[data-playlist-kind="${kind}"]`);
         updatedList.scrollTop = scrollTop;
         restoreFocus(row.dataset.playlistId);
-        notify('Posi��o alterada. Clique em Salvar ordem para confirmar.');
+        notify('Posição alterada. Clique em Salvar ordem para confirmar.');
       } else restoreFocus(row.dataset.playlistId);
     };
     const cancelWithEscape = event => {
@@ -1130,7 +1130,7 @@ function saveCatalogOrder(r) {
   const ordered = catalogOrder(r);
   const updated = {...r,categories:ordered.categories,products:ordered.products};
   const next = {...state,restaurants:state.restaurants.map(item=>item===r?updated:item)};
-  if (!writeState(next)) { notify('N�o foi poss�vel salvar. Tente novamente.'); return; }
+  if (!writeState(next)) { notify('Não foi possível salvar. Tente novamente.'); return; }
   Object.assign(r,updated);
   catalogDraft = null;
   render();
@@ -1140,12 +1140,12 @@ function saveCatalogOrder(r) {
 function categoryForm(r,id) {
   if (!r.sectors.length) { notify('Cadastre um setor antes de criar uma categoria.'); return; }
   const c=byId(r.categories,id);
-  const fields=field('Nome',input('name',c?.name,'required maxlength="55"'))+field('Setor respons�vel',select('sector',choiceRows(r.sectors),c?.sector,'required'));
+  const fields=field('Nome',input('name',c?.name,'required maxlength="55"'))+field('Setor responsável',select('sector',choiceRows(r.sectors),c?.sector,'required'));
   showForm(c?'Editar categoria':'Nova categoria',fields,data=>{
     const name=String(data.get('name')).trim();
     const sector=String(data.get('sector'));
-    if (!name || !byId(r.sectors,sector)) return modalError('Informe o nome e o setor respons�vel.');
-    if (r.categories.some(item=>item!==c && normalize(item.name)===normalize(name))) return modalError('J� existe uma categoria com este nome.');
+    if (!name || !byId(r.sectors,sector)) return modalError('Informe o nome e o setor responsável.');
+    if (r.categories.some(item=>item!==c && normalize(item.name)===normalize(name))) return modalError('Já existe uma categoria com este nome.');
     if (c) Object.assign(c,{name,sector});
     else r.categories.push({id:uid(),name,sector});
     complete(c?'Categoria atualizada.':'Categoria cadastrada.');
@@ -1156,26 +1156,26 @@ function removeCategory(r,c) {
   const products=r.products.filter(p=>p.category===c.id);
   const alternatives=r.categories.filter(item=>item.id!==c.id);
   if (products.length && !alternatives.length) { openModal('Categoria em uso','<p class="subtle">Crie outra categoria para transferir os produtos antes de excluir esta.</p>',btn('Entendi','dismiss')); return; }
-  const body=`<p class="subtle">${esc(c.name)} ser� retirada do card�pio.${products.length?' Escolha o destino dos produtos.':''}</p>${products.length?field('Mover produtos para',select('category',placeholderOption('Selecione a categoria',alternatives),'','required')):''}`;
+  const body=`<p class="subtle">${esc(c.name)} será retirada do cardápio.${products.length?' Escolha o destino dos produtos.':''}</p>${products.length?field('Mover produtos para',select('category',placeholderOption('Selecione a categoria',alternatives),'','required')):''}`;
   openModal('Excluir categoria',body,cancel()+submit('Excluir categoria','danger'),data=>{
     const target=byId(alternatives,data.get('category'));
     if (products.length && !target) return modalError('Escolha uma categoria de destino.');
     products.forEach(p=>p.category=target.id);
     r.categories=r.categories.filter(item=>item!==c);
-    complete('Categoria exclu�da.');
+    complete('Categoria excluída.');
   });
 }
 
 function productForm(r,id) {
   if (!r.categories.length) { notify('Cadastre uma categoria antes de criar um produto.'); return; }
   const p=byId(r.products,id);
-  const fields=field('Nome',input('name',p?.name,'required maxlength="70"'),'full')+field('Categoria',select('category',choiceRows(r.categories),p?.category,'required'))+field('Pre�o (R$)',input('price',p?(p.price/100).toFixed(2).replace('.',','):'','required inputmode="decimal" maxlength="10" placeholder="6,50"'))+field('Descri��o',textarea('description',p?.description),'full')+field('URL da imagem',input('image',p?.image,'type="url" placeholder="https://" maxlength="650"'),'full')+`<label class="check full"><input type="checkbox" name="active" ${p?.active===false?'':'checked'}> Vis�vel no card�pio</label>`;
+  const fields=field('Nome',input('name',p?.name,'required maxlength="70"'),'full')+field('Categoria',select('category',choiceRows(r.categories),p?.category,'required'))+field('Preço (R$)',input('price',p?(p.price/100).toFixed(2).replace('.',','):'','required inputmode="decimal" maxlength="10" placeholder="6,50"'))+field('Descrição',textarea('description',p?.description),'full')+field('URL da imagem',input('image',p?.image,'type="url" placeholder="https://" maxlength="650"'),'full')+`<label class="check full"><input type="checkbox" name="active" ${p?.active===false?'':'checked'}> Visível no cardápio</label>`;
   showForm(p?'Editar produto':'Novo produto',fields,data=>{
     const name=String(data.get('name')).trim();
     const price=parsePrice(data.get('price'));
     const category=String(data.get('category'));
     const image=String(data.get('image')).trim();
-    if (!name || price===null || !byId(r.categories,category)) return modalError('Informe nome, categoria e pre�o v�lido. Exemplo de pre�o: 6,50.');
+    if (!name || price===null || !byId(r.categories,category)) return modalError('Informe nome, categoria e preço válido. Exemplo de preço: 6,50.');
     if (image && !safeImage(image)) return modalError('Use uma URL HTTPS para a imagem.');
     const fields={name,price,category,description:String(data.get('description')).trim(),image,active:data.has('active')};
     if (p) Object.assign(p,fields);
@@ -1191,21 +1191,21 @@ function parsePrice(value) {
 
 function renderTeam(r) {
   const staffView=teamView==='staff';
-  const rows=staffView?r.staff.map(s=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('team')}</span><div><h3>${esc(s.name)}</h3><p class="small">${esc(roles[s.role]?.name)} � ${esc(s.login)} � ${s.active?'Ativo':'Inativo'}${s.sectors.length?` � ${esc(s.sectors.map(id=>sectorName(r,id)).join(', '))}`:''}</p></div></div>${btn('A��es do funcion�rio','entity-menu',{id:s.id,value:'staff',symbol:'more',hide:true,className:'tiny'})}</article>`).join(''):r.sectors.map(s=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('queue')}</span><div><h3>${esc(s.name)}</h3><p class="small">${esc(screenName(r,s.screen))} � ${r.categories.filter(c=>c.sector===s.id).length} categorias</p></div></div>${btn('A��es do setor','entity-menu',{id:s.id,value:'sector',symbol:'more',hide:true,className:'tiny'})}</article>`).join('');
-  return pageHead('Equipe e setores','Cadastre os perfis da opera��o e escolha a tela respons�vel por cada setor.',btn(staffView?'Novo funcion�rio':'Novo setor',staffView?'staff-form':'sector-form',{symbol:'plus',className:'primary'}))+tabs([['staff','Funcion�rios'],['sectors','Setores']],teamView,'team-view')+panel(staffView?'Funcion�rios':'Setores de preparo',rows||`<div class="panel-body">${empty(staffView?'Nenhum funcion�rio cadastrado.':'Nenhum setor cadastrado.')}</div>`);
+  const rows=staffView?r.staff.map(s=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('team')}</span><div><h3>${esc(s.name)}</h3><p class="small">${esc(roles[s.role]?.name)} · ${esc(s.login)} · ${s.active?'Ativo':'Inativo'}${s.sectors.length?` · ${esc(s.sectors.map(id=>sectorName(r,id)).join(', '))}`:''}</p></div></div>${btn('Ações do funcionário','entity-menu',{id:s.id,value:'staff',symbol:'more',hide:true,className:'tiny'})}</article>`).join(''):r.sectors.map(s=>`<article class="list-row"><div class="list-title"><span class="ico">${icon('queue')}</span><div><h3>${esc(s.name)}</h3><p class="small">${esc(screenName(r,s.screen))} · ${r.categories.filter(c=>c.sector===s.id).length} categorias</p></div></div>${btn('Ações do setor','entity-menu',{id:s.id,value:'sector',symbol:'more',hide:true,className:'tiny'})}</article>`).join('');
+  return pageHead('Equipe e setores','Cadastre os perfis da operação e escolha a tela responsável por cada setor.',btn(staffView?'Novo funcionário':'Novo setor',staffView?'staff-form':'sector-form',{symbol:'plus',className:'primary'}))+tabs([['staff','Funcionários'],['sectors','Setores']],teamView,'team-view')+panel(staffView?'Funcionários':'Setores de preparo',rows||`<div class="panel-body">${empty(staffView?'Nenhum funcionário cadastrado.':'Nenhum setor cadastrado.')}</div>`);
 }
 
 function staffForm(r,id) {
   const staff=byId(r.staff,id);
-  const fields=field('Nome',input('name',staff?.name,'required maxlength="65"'))+field('E-mail de acesso',input('login',staff?.login,'type="email" required maxlength="90"'))+field('Perfil',select('role',Object.entries(roles).map(([key,value])=>[key,value.name]),staff?.role||'waiter'))+`<label class="check"><input type="checkbox" name="active" ${staff?.active===false?'':'checked'}> Funcion�rio ativo</label><fieldset class="full sector-choices"><legend>Setores vinculados</legend>${r.sectors.map(s=>`<label class="check"><input type="checkbox" name="sector" value="${esc(s.id)}" ${staff?.sectors.includes(s.id)?'checked':''}> ${esc(s.name)}</label>`).join('') || '<p class="small">Nenhum setor cadastrado.</p>'}</fieldset>`;
-  showForm(staff?'Editar funcion�rio':'Novo funcion�rio',fields,data=>{
+  const fields=field('Nome',input('name',staff?.name,'required maxlength="65"'))+field('E-mail de acesso',input('login',staff?.login,'type="email" required maxlength="90"'))+field('Perfil',select('role',Object.entries(roles).map(([key,value])=>[key,value.name]),staff?.role||'waiter'))+`<label class="check"><input type="checkbox" name="active" ${staff?.active===false?'':'checked'}> Funcionário ativo</label><fieldset class="full sector-choices"><legend>Setores vinculados</legend>${r.sectors.map(s=>`<label class="check"><input type="checkbox" name="sector" value="${esc(s.id)}" ${staff?.sectors.includes(s.id)?'checked':''}> ${esc(s.name)}</label>`).join('') || '<p class="small">Nenhum setor cadastrado.</p>'}</fieldset>`;
+  showForm(staff?'Editar funcionário':'Novo funcionário',fields,data=>{
     const name=String(data.get('name')).trim();
     const login=String(data.get('login')).trim().toLowerCase();
-    if (!name || r.staff.some(s=>s!==staff && s.login===login)) return modalError('Informe um nome e um e-mail de acesso que ainda n�o esteja cadastrado.');
+    if (!name || r.staff.some(s=>s!==staff && s.login===login)) return modalError('Informe um nome e um e-mail de acesso que ainda não esteja cadastrado.');
     const values={name,login,role:String(data.get('role')),sectors:data.getAll('sector'),active:data.has('active')};
     if (staff) Object.assign(staff,values);
     else r.staff.push({id:uid(),...values});
-    complete(staff?'Funcion�rio atualizado.':'Funcion�rio cadastrado.');
+    complete(staff?'Funcionário atualizado.':'Funcionário cadastrado.');
   });
 }
 
@@ -1216,7 +1216,7 @@ function sectorForm(r,id) {
     const name=String(data.get('name')).trim();
     const screen=String(data.get('screen'));
     if (!name || !byId(r.screens,screen)) return modalError('Informe o nome e a tela do setor.');
-    if (r.sectors.some(s=>s!==sector && normalize(s.name)===normalize(name))) return modalError('J� existe um setor com este nome.');
+    if (r.sectors.some(s=>s!==sector && normalize(s.name)===normalize(name))) return modalError('Já existe um setor com este nome.');
     if (sector) Object.assign(sector,{name,screen});
     else r.sectors.push({id:uid(),name,screen});
     complete(sector?'Setor atualizado.':'Setor cadastrado.');
@@ -1224,12 +1224,12 @@ function sectorForm(r,id) {
 }
 
 function entityMenu(r,type,id) {
-  const config={category:[r.categories,'category-form','Excluir categoria','category-remove'],product:[r.products,'product-form','Ocultar produto','product-toggle'],staff:[r.staff,'staff-form','Desativar funcion�rio','staff-toggle'],sector:[r.sectors,'sector-form','Excluir setor','sector-remove']}[type];
+  const config={category:[r.categories,'category-form','Excluir categoria','category-remove'],product:[r.products,'product-form','Ocultar produto','product-toggle'],staff:[r.staff,'staff-form','Desativar funcionário','staff-toggle'],sector:[r.sectors,'sector-form','Excluir setor','sector-remove']}[type];
   if (!config) return;
   const [items,form,label,action]=config;
   const item=byId(items,id);
   if (!item) return;
-  const actionLabel=item.active===false?(type==='product'?'Exibir produto':'Ativar funcion�rio'):label;
+  const actionLabel=item.active===false?(type==='product'?'Exibir produto':'Ativar funcionário'):label;
   openModal(item.name,'',btn('Editar',form,{id})+btn(actionLabel,action,{id,className:item.active===false?'primary':'danger'}));
 }
 
@@ -1249,9 +1249,9 @@ function reportData(r,start=reportStart,end=reportEnd) {
 
 function renderReports(r) {
   const data=reportData(r);
-  const reportRows=reportView==='ranking'?data.ranking.map((item,index)=>`<div class="list-row"><div><h3>${index+1}. ${esc(item.name)}</h3><p class="small">${item.qty} ${item.qty===1?'unidade entregue':'unidades entregues'}</p></div><strong>${money(item.total)}</strong></div>`).join(''):data.checks.map(c=>`<div class="list-row"><div><h3>${esc(c.name)}</h3><p class="small">${dateLabel(day(new Date(c.closed)))} � ${timeLabel(c.closed)} � ${esc(c.method)}</p></div><strong>${money(c.paid)}</strong></div>`).join('');
-  return pageHead('Relat�rios','Consulte os recebimentos e os produtos mais vendidos no per�odo selecionado.',btn('Exportar CSV','export-report',{disabled:reportView==='ranking'?!data.ranking.length:!data.checks.length}))+
-    `<form id="report-filter" class="panel panel-body report-filter">${field('De',input('start',reportStart,'type="date" required'))}${field('At�',input('end',reportEnd,'type="date" required'))}${submit('Aplicar per�odo')}${btn('Hoje','report-today')}${btn('�ltimos 7 dias','report-week')}<p class="error full" role="alert" hidden></p></form><div class="stack"><section class="metrics report-metrics" aria-label="Resumo do per�odo">${metric('Recebido',money(data.revenue),'Comandas pagas','reports')}${metric('Comandas pagas',data.checks.length,'Registros no per�odo','tabs')}${metric('Pedidos entregues',data.orders.length,'Entregas confirmadas','orders')}${metric('Itens entregues',data.ranking.reduce((n,item)=>n+item.qty,0),'Unidades registradas','catalog')}</section></div>`+tabs([['day','Relat�rio do dia'],['ranking','Mais vendidos']],reportView,'report-view')+panel(reportView==='ranking'?'Produtos mais vendidos':'Comandas pagas',reportRows||`<div class="panel-body">${empty('Nenhum resultado para este per�odo.')}</div>`,`${dateLabel(reportStart)} a ${dateLabel(reportEnd)}`);
+  const reportRows=reportView==='ranking'?data.ranking.map((item,index)=>`<div class="list-row"><div><h3>${index+1}. ${esc(item.name)}</h3><p class="small">${item.qty} ${item.qty===1?'unidade entregue':'unidades entregues'}</p></div><strong>${money(item.total)}</strong></div>`).join(''):data.checks.map(c=>`<div class="list-row"><div><h3>${esc(c.name)}</h3><p class="small">${dateLabel(day(new Date(c.closed)))} · ${timeLabel(c.closed)} · ${esc(c.method)}</p></div><strong>${money(c.paid)}</strong></div>`).join('');
+  return pageHead('Relatórios','Consulte os recebimentos e os produtos mais vendidos no período selecionado.',btn('Exportar CSV','export-report',{disabled:reportView==='ranking'?!data.ranking.length:!data.checks.length}))+
+    `<form id="report-filter" class="panel panel-body report-filter">${field('De',input('start',reportStart,'type="date" required'))}${field('Até',input('end',reportEnd,'type="date" required'))}${submit('Aplicar período')}${btn('Hoje','report-today')}${btn('Últimos 7 dias','report-week')}<p class="error full" role="alert" hidden></p></form><div class="stack"><section class="metrics report-metrics" aria-label="Resumo do período">${metric('Recebido',money(data.revenue),'Comandas pagas','reports')}${metric('Comandas pagas',data.checks.length,'Registros no período','tabs')}${metric('Pedidos entregues',data.orders.length,'Entregas confirmadas','orders')}${metric('Itens entregues',data.ranking.reduce((n,item)=>n+item.qty,0),'Unidades registradas','catalog')}</section></div>`+tabs([['day','Relatório do dia'],['ranking','Mais vendidos']],reportView,'report-view')+panel(reportView==='ranking'?'Produtos mais vendidos':'Comandas pagas',reportRows||`<div class="panel-body">${empty('Nenhum resultado para este período.')}</div>`,`${dateLabel(reportStart)} a ${dateLabel(reportEnd)}`);
 }
 
 function exportReport(r) {
@@ -1273,20 +1273,20 @@ function exportReport(r) {
 
 function renderSettings(r) {
   const rows=r.screens.map(s=>`<div class="list-row"><div><h3>${esc(s.name)}</h3><p class="small">${s.id===r.queueScreen?'Tela da fila geral':esc(r.sectors.filter(x=>x.screen===s.id).map(x=>x.name).join(', ') || 'Sem setor vinculado')}</p></div>${btn('Editar tela','screen-form',{id:s.id,className:'tiny'})}</div>`).join('');
-  const body=`<div class="list-row"><div class="list-title"><span class="mark">${r.logo?photo(r.logo):icon('catalog')}</span><div><h3>${esc(r.name)}</h3><p class="small">${esc(r.subtitle)}</p></div></div>${btn('A��es do estabelecimento','restaurant-menu',{symbol:'more',hide:true,className:'tiny'})}</div><div class="list-row"><div><h3>Identidade do card�pio</h3><p class="small">Logo, cor principal e fundo</p></div>${btn('Personalizar','restaurant-form',{className:'tiny'})}</div><div class="list-row"><div><h3>Chamar gar�om</h3><p class="small">${r.callFee?money(r.callFee)+' por chamado atendido':'Sem cobran�a'}</p></div>${btn('Configurar','call-fee',{className:'tiny'})}</div>`;
-  return pageHead('Estabelecimento','Gerencie o card�pio do cliente e o destino dos pedidos.',btn('Novo estabelecimento','restaurant-form',{value:'new',symbol:'plus',className:'primary'}))+`<div class="stack"><div class="row"><label class="row">Estabelecimento ${select('restaurant',choiceRows(state.restaurants),r.id)}</label>${link('Pr�via do card�pio',clientHref(r,r.checks.find(c=>c.status==='open')?.code),'eye')}</div>${panel('Configura��es',body)}${panel('Telas de pedidos',rows+`<div class="list-row"><label class="row">Tela da fila geral ${select('queue-screen',choiceRows(r.screens),r.queueScreen)}</label>${btn('Nova tela','screen-form',{symbol:'plus'})}</div>`)}</div>`;
+  const body=`<div class="list-row"><div class="list-title"><span class="mark">${r.logo?photo(r.logo):icon('catalog')}</span><div><h3>${esc(r.name)}</h3><p class="small">${esc(r.subtitle)}</p></div></div>${btn('Ações do estabelecimento','restaurant-menu',{symbol:'more',hide:true,className:'tiny'})}</div><div class="list-row"><div><h3>Identidade do cardápio</h3><p class="small">Logo, cor principal e fundo</p></div>${btn('Personalizar','restaurant-form',{className:'tiny'})}</div><div class="list-row"><div><h3>Chamar garçom</h3><p class="small">${r.callFee?money(r.callFee)+' por chamado atendido':'Sem cobrança'}</p></div>${btn('Configurar','call-fee',{className:'tiny'})}</div>`;
+  return pageHead('Estabelecimento','Gerencie o cardápio do cliente e o destino dos pedidos.',btn('Novo estabelecimento','restaurant-form',{value:'new',symbol:'plus',className:'primary'}))+`<div class="stack"><div class="row"><label class="row">Estabelecimento ${select('restaurant',choiceRows(state.restaurants),r.id)}</label>${link('Prévia do cardápio',clientHref(r,r.checks.find(c=>c.status==='open')?.code),'eye')}</div>${panel('Configurações',body)}${panel('Telas de pedidos',rows+`<div class="list-row"><label class="row">Tela da fila geral ${select('queue-screen',choiceRows(r.screens),r.queueScreen)}</label>${btn('Nova tela','screen-form',{symbol:'plus'})}</div>`)}</div>`;
 }
 
 function restaurantForm(r,creating) {
   const current=creating?makeRestaurant('', ''):r;
   const existingLogo=current.logo && !current.logo.startsWith('data:')?current.logo:'';
-  const fields=field('Nome do estabelecimento',input('name',current.name,'required maxlength="70"'),'full')+field('Descri��o do card�pio',textarea('subtitle',current.subtitle),'full')+field('Cor principal',input('accent',allowedColor(current.accent,menuPalette.accent),'type="color" class="swatch"'))+field('Fundo do card�pio',input('background',allowedColor(current.background,menuPalette.background),'type="color" class="swatch"'))+field('URL HTTPS da logo',input('logo',existingLogo,'type="url" placeholder="https://" maxlength="650"'),'full')+field('Ou enviar imagem (at� 400 KB)','<input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif">','full')+(current.logo?'<label class="check full"><input type="checkbox" name="remove-logo"> Remover a logo atual</label>':'');
+  const fields=field('Nome do estabelecimento',input('name',current.name,'required maxlength="70"'),'full')+field('Descrição do cardápio',textarea('subtitle',current.subtitle),'full')+field('Cor principal',input('accent',allowedColor(current.accent,menuPalette.accent),'type="color" class="swatch"'))+field('Fundo do cardápio',input('background',allowedColor(current.background,menuPalette.background),'type="color" class="swatch"'))+field('URL HTTPS da logo',input('logo',existingLogo,'type="url" placeholder="https://" maxlength="650"'),'full')+field('Ou enviar imagem (até 400 KB)','<input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif">','full')+(current.logo?'<label class="check full"><input type="checkbox" name="remove-logo"> Remover a logo atual</label>':'');
   showForm(creating?'Novo estabelecimento':'Personalizar estabelecimento',fields,data=>{
     const name=String(data.get('name')).trim();
     const source=String(data.get('logo')).trim();
     const image=data.get('image');
-    if (!name || state.restaurants.some(x=>x!==current && normalize(x.name)===normalize(name))) return modalError('Informe um nome de estabelecimento que ainda n�o esteja em uso.');
-    if (source && !safeImage(source)) return modalError('Informe uma URL HTTPS v�lida.');
+    if (!name || state.restaurants.some(x=>x!==current && normalize(x.name)===normalize(name))) return modalError('Informe um nome de estabelecimento que ainda não esteja em uso.');
+    if (source && !safeImage(source)) return modalError('Informe uma URL HTTPS válida.');
     const save=logo=>{
       const branding={name,subtitle:String(data.get('subtitle')).trim(),accent:data.get('accent'),background:data.get('background'),logo};
       if (creating) { const created={...makeRestaurant(uid(),name),...branding}; state.restaurants.push(created); state.active=created.id; }
@@ -1294,11 +1294,11 @@ function restaurantForm(r,creating) {
       complete(creating?'Estabelecimento cadastrado.':'Estabelecimento atualizado.');
     };
     if (image?.size) {
-      if (image.size>400*1024 || !/^image\/(png|jpeg|webp|gif)$/.test(image.type)) return modalError('Escolha uma imagem PNG, JPG, WebP ou GIF de at� 400 KB.');
+      if (image.size>400*1024 || !/^image\/(png|jpeg|webp|gif)$/.test(image.type)) return modalError('Escolha uma imagem PNG, JPG, WebP ou GIF de até 400 KB.');
       const reader=new FileReader();
       const modal=currentModal;
       reader.addEventListener('load',()=>{if (dialog.open && currentModal===modal) save(reader.result);});
-      reader.addEventListener('error',()=>{if (dialog.open && currentModal===modal) modalError('N�o foi poss�vel carregar a imagem.');});
+      reader.addEventListener('error',()=>{if (dialog.open && currentModal===modal) modalError('Não foi possível carregar a imagem.');});
       reader.readAsDataURL(image);
       return;
     }
@@ -1310,7 +1310,7 @@ function screenForm(r,id) {
   const screen=byId(r.screens,id);
   showForm(screen?'Editar tela':'Nova tela',field('Nome da tela',input('name',screen?.name,'required maxlength="50"'),'full'),data=>{
     const name=String(data.get('name')).trim();
-    if (!name || r.screens.some(s=>s!==screen && normalize(s.name)===normalize(name))) return modalError('Informe um nome de tela que ainda n�o esteja em uso.');
+    if (!name || r.screens.some(s=>s!==screen && normalize(s.name)===normalize(name))) return modalError('Informe um nome de tela que ainda não esteja em uso.');
     if (screen) screen.name=name;
     else r.screens.push({id:uid(),name});
     complete(screen?'Tela atualizada.':'Tela cadastrada.');
@@ -1319,14 +1319,14 @@ function screenForm(r,id) {
 
 function renderReview(r) {
   const steps=[
-    ['Card�pio no celular','Abra o card�pio, escolha Limonada da casa e aumente para duas unidades. O carrinho deve exibir R$ 13,00 e pedir confirma��o antes de retirar a �ltima unidade.',clientHref(r,'2401'),'Abrir card�pio'],
-    ['Da cozinha at� o pagamento','Envie o pedido, mude para Cozinheiro para processar pedidos do setor Cozinha e para Gar�om para confirmar a entrega. Use o perfil Gerente para transitar tamb�m pedidos do Bar. Abra a comanda e registre o pagamento depois de concluir as pend�ncias.','#orders','Ver pedidos'],
-    ['Reservas e mesas','Agende uma reserva, consulte a mesa e cancele pela pr�pria reserva. O hist�rico exibe o cancelamento e libera a mesa para outro agendamento.','#reservations','Ver reservas'],
-    ['Ordem e exclus�o de categorias','Mova categorias e produtos. Ao excluir uma categoria em uso, escolha o destino dos produtos. A aba selecionada continua aberta.','#catalog','Ver card�pio da gest�o'],
-    ['Telas por setor','Associe as categorias aos setores e os setores �s telas. Compare os pedidos no Painel da fila e na Lista de pedidos.','#queue','Ver fila de pedidos'],
-    ['Relat�rios por per�odo','Compare o per�odo de hoje com os �ltimos sete dias. O filtro � aplicado ao relat�rio do dia e ao ranking de produtos.','#reports','Ver relat�rios']
+    ['Cardápio no celular','Abra o cardápio, escolha Limonada da casa e aumente para duas unidades. O carrinho deve exibir R$ 13,00 e pedir confirmação antes de retirar a última unidade.',clientHref(r,'2401'),'Abrir cardápio'],
+    ['Da cozinha até o pagamento','Envie o pedido, mude para Cozinheiro para processar pedidos do setor Cozinha e para Garçom para confirmar a entrega. Use o perfil Gerente para transitar também pedidos do Bar. Abra a comanda e registre o pagamento depois de concluir as pendências.','#orders','Ver pedidos'],
+    ['Reservas e mesas','Agende uma reserva, consulte a mesa e cancele pela própria reserva. O histórico exibe o cancelamento e libera a mesa para outro agendamento.','#reservations','Ver reservas'],
+    ['Ordem e exclusão de categorias','Mova categorias e produtos. Ao excluir uma categoria em uso, escolha o destino dos produtos. A aba selecionada continua aberta.','#catalog','Ver cardápio da gestão'],
+    ['Telas por setor','Associe as categorias aos setores e os setores às telas. Compare os pedidos no Painel da fila e na Lista de pedidos.','#queue','Ver fila de pedidos'],
+    ['Relatórios por período','Compare o período de hoje com os últimos sete dias. O filtro é aplicado ao relatório do dia e ao ranking de produtos.','#reports','Ver relatórios']
   ];
-  return pageHead('Roteiro de teste','Explore a demonstra��o e repita os fluxos com os dados de exemplo.',btn('Restaurar dados da demonstra��o','reset',{className:'danger'}))+`<div class="tiles review-grid">${steps.map(([title,description,href,label])=>`<article class="panel tile"><h2>${title}</h2><p class="subtle">${description}</p>${link(label,href,'eye')}</article>`).join('')}</div>`;
+  return pageHead('Roteiro de teste','Explore a demonstração e repita os fluxos com os dados de exemplo.',btn('Restaurar dados da demonstração','reset',{className:'danger'}))+`<div class="tiles review-grid">${steps.map(([title,description,href,label])=>`<article class="panel tile"><h2>${title}</h2><p class="subtle">${description}</p>${link(label,href,'eye')}</article>`).join('')}</div>`;
 }
 
 function advanceOrder(r,order,next) {
@@ -1339,12 +1339,12 @@ function advanceOrder(r,order,next) {
   }
   order.status=next;
   if (next==='delivered') order.delivered=now();
-  persist(`Pedido #${order.number} � ${statusNames[next]}.`);
+  persist(`Pedido #${order.number} · ${statusNames[next]}.`);
 }
 
 function cancelOrder(order) {
   if (!isManager() || !statesInProgress.includes(order.status)) return;
-  confirmAction('Cancelar pedido',`Cancelar o pedido #${order.number}? Ele ser� registrado no hist�rico de cancelamentos.`,'Cancelar pedido',()=>{
+  confirmAction('Cancelar pedido',`Cancelar o pedido #${order.number}? Ele será registrado no histórico de cancelamentos.`,'Cancelar pedido',()=>{
     order.status='cancelled';
     order.cancelled=now();
     complete('Pedido cancelado.');
@@ -1353,21 +1353,21 @@ function cancelOrder(order) {
 
 function removeSector(r,sector) {
   if (r.categories.some(c=>c.sector===sector.id) || r.orders.some(o=>o.sector===sector.id)) {
-    openModal('Setor em uso','<p class="subtle">O setor est� vinculado a categorias ou ao hist�rico de pedidos. Edite o nome ou altere a tela do setor.</p>',btn('Entendi','dismiss'));
+    openModal('Setor em uso','<p class="subtle">O setor está vinculado a categorias ou ao histórico de pedidos. Edite o nome ou altere a tela do setor.</p>',btn('Entendi','dismiss'));
     return;
   }
   confirmAction('Excluir setor',`Excluir ${sector.name}?`,'Excluir setor',()=>{
     r.staff.forEach(member=>member.sectors=member.sectors.filter(id=>id!==sector.id));
     r.sectors=r.sectors.filter(s=>s!==sector);
-    complete('Setor exclu�do.');
+    complete('Setor excluído.');
   });
 }
 
 function callFeeForm(r) {
   const active=r.callFee===1;
-  showForm('Chamar gar�om',field('Cobran�a por chamado atendido',select('fee',[['0','Sem cobran�a'],['1','R$ 0,01']],active?'1':'0'),'full')+'<p class="small full">O valor aparece antes de o cliente enviar o chamado e entra na comanda ap�s o atendimento.</p>',data=>{
+  showForm('Chamar garçom',field('Cobrança por chamado atendido',select('fee',[['0','Sem cobrança'],['1','R$ 0,01']],active?'1':'0'),'full')+'<p class="small full">O valor aparece antes de o cliente enviar o chamado e entra na comanda após o atendimento.</p>',data=>{
     r.callFee=Number(data.get('fee'));
-    complete('Configura��o do chamado atualizada.');
+    complete('Configuração do chamado atualizada.');
   });
 }
 
@@ -1386,7 +1386,7 @@ const actions = {
   'cancel-order':(r,id)=>{const o=byId(r.orders,id);if (o) cancelOrder(o);},
   'handle-call':(r,id)=>{
     const call=byId(r.calls,id);
-    if (managesChecks() && call?.status==='open') {call.status='done';call.attended=now();persist('Atendimento conclu�do.');}
+    if (managesChecks() && call?.status==='open') {call.status='done';call.attended=now();persist('Atendimento concluído.');}
   },
   'table-detail':(r,id)=>{const table=byId(r.tables,id);if (table && role!=='cook') showTable(r,table);},
   'table-form':tableForm,
@@ -1400,35 +1400,35 @@ const actions = {
   qr:(r,id)=>{const c=byId(r.checks,id);if (managesChecks() && c?.status==='open') showQr(r,c);},
   copy:async(r,id,value)=>{
     try {await navigator.clipboard.writeText(value);notify('Link copiado.');}
-    catch {openModal('Link do card�pio',field('Copie o endere�o',input('share-url',value,'readonly')),btn('Fechar','dismiss'));dialog.querySelector('input').select();}
+    catch {openModal('Link do cardápio',field('Copie o endereço',input('share-url',value,'readonly')),btn('Fechar','dismiss'));dialog.querySelector('input').select();}
   },
   'queue-view':(r,id,value)=>{queueView=value;render();},
-  fullscreen:()=>{if (document.fullscreenElement) document.exitFullscreen();else document.documentElement.requestFullscreen?.().catch(()=>notify('A tela cheia est� indispon�vel neste navegador.'));},
+  fullscreen:()=>{if (document.fullscreenElement) document.exitFullscreen();else document.documentElement.requestFullscreen?.().catch(()=>notify('A tela cheia está indisponível neste navegador.'));},
   'entity-menu':(r,id,value)=>{if (isManager()) entityMenu(r,value,id);},
   'catalog-view':(r,id,value)=>{catalogView=value;render();},
   'category-form':(r,id)=>{if (isManager()) categoryForm(r,id);},
   'category-remove':(r,id)=>{const c=byId(r.categories,id);if (isManager() && c) removeCategory(r,c);},
   'product-form':(r,id)=>{if (isManager()) productForm(r,id);},
-  'product-toggle':(r,id)=>{const p=byId(r.products,id);if (isManager() && p) {p.active=!p.active;complete(p.active?'Produto exibido no card�pio.':'Produto ocultado.');}},
+  'product-toggle':(r,id)=>{const p=byId(r.products,id);if (isManager() && p) {p.active=!p.active;complete(p.active?'Produto exibido no cardápio.':'Produto ocultado.');}},
   'catalog-category':(r,id)=>{selectedCatalogCategory=id;catalogView='products';render();},
   'catalog-order-save':saveCatalogOrder,
-  'catalog-order-cancel':()=>{catalogDraft=null;render();notify('Altera��es de ordem descartadas.');},
+  'catalog-order-cancel':()=>{catalogDraft=null;render();notify('Alterações de ordem descartadas.');},
   'team-view':(r,id,value)=>{teamView=value;render();},
   'staff-form':(r,id)=>{if (isManager()) staffForm(r,id);},
-  'staff-toggle':(r,id)=>{const member=byId(r.staff,id);if (isManager() && member) {member.active=!member.active;complete(member.active?'Funcion�rio ativado.':'Funcion�rio desativado.');}},
+  'staff-toggle':(r,id)=>{const member=byId(r.staff,id);if (isManager() && member) {member.active=!member.active;complete(member.active?'Funcionário ativado.':'Funcionário desativado.');}},
   'sector-form':(r,id)=>{if (isManager()) sectorForm(r,id);},
   'sector-remove':(r,id)=>{const sector=byId(r.sectors,id);if (isManager() && sector) removeSector(r,sector);},
   'report-view':(r,id,value)=>{reportView=value;render();},
   'report-today':()=>{reportStart=day();reportEnd=reportStart;render();},
   'report-week':()=>{reportEnd=day();reportStart=day(new Date(Date.now()-6*86400000));render();},
   'export-report':r=>{if (isManager()) exportReport(r);},
-  'restaurant-menu':r=>{if (isManager()) openModal(r.name,'',btn('Editar e personalizar','restaurant-form')+link('Abrir card�pio',clientHref(r),'eye','primary'));},
+  'restaurant-menu':r=>{if (isManager()) openModal(r.name,'',btn('Editar e personalizar','restaurant-form')+link('Abrir cardápio',clientHref(r),'eye','primary'));},
   'restaurant-form':(r,id,value)=>{if (isManager()) restaurantForm(r,value==='new');},
   'screen-form':(r,id)=>{if (isManager()) screenForm(r,id);},
   'call-fee':r=>{if (isManager()) callFeeForm(r);},
   reset:()=>{
     if (!isManager()) return;
-    confirmAction('Restaurar dados da demonstra��o','As altera��es de exemplo neste navegador ser�o substitu�das pelos dados iniciais.','Restaurar',()=>{Object.assign(state,makeSeed());complete('Dados da demonstra��o restaurados.');});
+    confirmAction('Restaurar dados da demonstração','As alterações de exemplo neste navegador serão substituídas pelos dados iniciais.','Restaurar',()=>{Object.assign(state,makeSeed());complete('Dados da demonstração restaurados.');});
   }
 };
 
@@ -1469,7 +1469,7 @@ document.addEventListener('submit',event=>{
   const data=new FormData(event.target);
   if (data.get('end')<data.get('start')) {
     const error=event.target.querySelector('.error');
-    error.textContent='A data final precisa ser igual ou posterior � inicial.';
+    error.textContent='A data final precisa ser igual ou posterior à inicial.';
     error.hidden=false;
     return;
   }
@@ -1493,7 +1493,7 @@ window.addEventListener('storage',event=>{
   if (event.key!==storageKey) return;
   Object.assign(state,getState());
   catalogDraft=null;
-  if (dialog.open) {dialog.close();notify('A demonstra��o foi atualizada em outra aba.');}
+  if (dialog.open) {dialog.close();notify('A demonstração foi atualizada em outra aba.');}
   render();
 });
 
