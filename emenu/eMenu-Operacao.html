@@ -257,7 +257,7 @@ function makeSeed(){
   r.calls=[{id:'a1',table:'t4',check:'c4',status:'open',created:new Date(Date.now()-2*60000).toISOString(),fee:0}];
   return {version:1,menuPaletteRevision:1,active:r.id,restaurants:[r]};
 }
-const storageKey='emenu-preview-eds-operacao-v2';
+const storageKey='emenu-preview-eds-operacao-v3';
 const isEDS=window.EMENU_MODE==='config';
 function getState(){
   try{
