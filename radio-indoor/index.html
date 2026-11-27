@@ -1271,9 +1271,14 @@ body.studio {
 .studio-side .wallet-number { font-size: clamp(2.1rem, 3.6vw, 2.8rem); margin: 0; }
 .studio-side .wallet .breakdown { margin: 0; gap: 5px; }
 .studio-side .breakdown > div { background: #162e762e; border-color: #ffffff35; padding-block: 4px; }
-.studio-side .wallet-note { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0 8px; margin-bottom: 3px; }
-.studio-side .wallet-note .equation, .studio-side .wallet-note .wallet-help { font-size: .8rem; }
-.studio-side .wallet .wallet-actions { grid-template-columns: 1fr 1fr; }
+.studio-side .wallet .wallet-head { display: flex; align-items: center; gap: 5px 12px; }
+.studio-side .wallet-heading { display: flex; align-items: center; gap: 9px; flex: 1 1 250px; min-width: 0; }
+.studio-side .wallet-heading h2 { flex: 0 0 auto; }
+.studio-side .wallet-caption { flex: 1 1 auto; font-size: .75rem; line-height: 1.3; margin: 0; }
+.studio-side .wallet-plan-controls { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 3px 7px; }
+.studio-side .wallet-plan-controls .wallet-plan { font-size: .72rem; }
+.studio-side .wallet-plan-controls .wallet-help { font-size: .75rem; white-space: nowrap; padding-inline: 0; }
+.studio-side .wallet .wallet-actions { grid-template-columns: 1fr 1fr; margin-top: 6px; }
 .studio-side .wallet .wallet-help { min-height: 25px; padding-block: 2px; text-align: left; }
 .studio-side .wallet .btn.on-blue {
   background: #ffffff16;
@@ -1400,17 +1405,16 @@ body.studio {
             </section>
       <div class="studio-content studio-side" id="studio-content">
         <section class="wallet" aria-labelledby="wallet-title">
-                  <div class="line wallet-head"><h2 id="wallet-title">Meus Créditos</h2><small class="wallet-plan">Diamante com ECAD</small></div>
+                  <div class="line wallet-head">
+                    <div class="wallet-heading"><h2 id="wallet-title">Meus Créditos</h2><p class="equation wallet-caption">Use créditos para gerar anúncios e vinhetas com IA.</p></div>
+                    <div class="wallet-plan-controls"><small class="wallet-plan">Diamante com ECAD</small><button class="btn link wallet-help" type="button" data-open-help>Como funcionam os créditos?</button></div>
+                  </div>
                   <div class="wallet-summary">
                     <div class="wallet-balance">
                       <small>Total disponível</small>
                       <div class="wallet-number" id="wallet-number" aria-live="polite"></div>
                     </div>
                     <div class="breakdown"><div><small>Do plano</small><b id="plan-mini"></b></div><div><small>Comprados</small><b id="bought-mini"></b></div></div>
-                  </div>
-                  <div class="wallet-note">
-                    <p class="equation">Use créditos para gerar anúncios e vinhetas com IA.</p>
-                    <button class="btn link wallet-help" type="button" data-open-help>Como funcionam os créditos?</button>
                   </div>
                   <div class="wallet-actions">
                     <button class="btn on-blue wallet-example" type="button" data-example-generate>Testar cálculo com exemplo</button>
@@ -3057,3 +3061,4 @@ renderBalance();
 </script>
 </body>
 </html>
+
